@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.background{
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+    object-position: 100% 100%;
+    background-blend-mode: normal;
+}
+/* 
+.color-overlay{
+    margin-bottom: -20px;
+} */
