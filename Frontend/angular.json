@@ -94,7 +94,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./src/assets/helper.js"
+            ]
           }
         }
       }

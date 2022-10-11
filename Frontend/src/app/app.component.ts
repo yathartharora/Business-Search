@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-declare const myTest: any;
+declare function myTest(): any;
 const keyword = document.getElementById('keyword')
 
 @Component({
@@ -11,6 +11,6 @@ export class AppComponent {
   title = 'Frontend';
 
   onClick(){
-    console.log(keyword);
+    myTest();
   }
 }
