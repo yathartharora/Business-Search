@@ -14,7 +14,4 @@ export class SearchServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getData(){
-    return this.http.get('http://localhost:3000/search?keyword='+this.keyword.nativeElement.value+'&distance='+this.distance.nativeElement.value+'&category='+this.category.nativeElement.value+'&location='+this.location.nativeElement.value)
-  }
 }

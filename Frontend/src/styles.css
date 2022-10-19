@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 .background{
     background-size: cover;
-    min-height: 100vh;
-    position: relative;
-    object-position: 100% 100%;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    object-position: 0% 120%;
     background-blend-mode: normal;
 }
 /* 

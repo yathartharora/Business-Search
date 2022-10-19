@@ -1,3 +1,6 @@
+<div class="image">
+
+
 <div class="border rounded mx-auto w-50 p-5 align-items-center mt-5 bg-white">
 
     <h4 class="text-center">Business Search</h4>
@@ -32,7 +35,7 @@
       </div>
   
       <div class="d-flex flex-row">
-        <input type="checkbox" class="form-check-input" value=""#checker>
+        <input type="checkbox" class="form-check-input" value="" (change)="locationChecker()" #checker>
         <label class="form-check-label">Auto-detect my location</label>
       </div>
 
@@ -44,8 +47,14 @@
         <button type="button" class="btn btn-primary mx-auto" (click)="onClear()">Clear</button>
       </div>
     </form>
-    
-
 </div>
+<br>
+<br>
 
-  
+<section>
+  <div class="bg-white align-items-center mx-auto w-50" #table>
+  </div>
+</section>
+
+    
+</div>
