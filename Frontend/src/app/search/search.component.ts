@@ -1,5 +1,8 @@
 import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
+import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-search',
@@ -8,6 +11,7 @@ import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common
 })
 
 export class SearchComponent implements OnInit {
+
 
   @ViewChild("keyword") keyword!: ElementRef;
   @ViewChild("distance") distance!: ElementRef;
@@ -18,13 +22,43 @@ export class SearchComponent implements OnInit {
   // constructor(private service: SearchServiceService){}
   constructor(private http: HttpClient){}
   ngOnInit(): any{
-  }
+    // this.http.get('http://localhost:3000/autosuggestion?value='+this.keyword.nativeElement.value)
+    // .subscribe(res =>{
+    //   console.log(res)
+    // })
+    this.searchBusiness.valueChanges
+    .pipe(
+     switchMap(value => this.http.get('http://localhost:3000/autosuggestion?value='+this.keyword.nativeElement.value)
+     .pipe(
+      
+     ))
+    )
+     .subscribe((data: any) => {
+      console.log(data)
+      this.options = []
+      console.log(data["data"]["categories"].length)
+      for (let i=0;i<data["data"]["categories"].length;i++){
+          this.options.push(data["data"]["categories"][i]["title"])
+      }
+      for (let i=0;i<data["data"]["terms"].length;i++){
+        this.options.push(data["data"]["terms"][i]["text"])
+    }
+     })
 
+  }
+  options: string[] = []
+  searchBusiness= new FormControl();
   geolocation: any
   latitude: any
   longitude: any
   business: any
 
+  suggestions() {
+    this.http.get('http://localhost:3000/autosuggestion?value='+this.keyword.nativeElement.value)
+    .subscribe(res =>{
+      console.log(res)
+    })
+  }
   onClear(){
     this.keyword.nativeElement.value = ""
     this.distance.nativeElement.value = "10"
@@ -64,6 +98,7 @@ export class SearchComponent implements OnInit {
       })
     }
     else{
+      //Call the Geolocation API from the backend
       this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.location.nativeElement.value + "&key=AIzaSyDb0g13Gt_bspPjhUGPWg6YrAMeUJ_NcEc")
       .subscribe(res =>{ 
         this.geolocation = res

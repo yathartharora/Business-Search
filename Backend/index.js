@@ -16,7 +16,12 @@ app.get('/search', (req, res) => {
   var longitude = req.query.longitude
   var category = req.query.category
 
-  var yelpURL = 'https://api.yelp.com/v3/businesses/search?term='+keyword+'&categories='+category+'&radius='+distance+'&latitude='+ latitude+'&longitude='+longitude
+  // distance = parseInt(distance) * 1609.34
+  var y = parseInt(distance) * 1609.34
+  y = Math.round(y)
+  console.log(y)
+
+  var yelpURL = 'https://api.yelp.com/v3/businesses/search?term='+keyword+'&categories='+category+'&radius='+y+'&latitude='+ latitude+'&longitude='+longitude
   console.log(yelpURL)
   fetch(yelpURL,{
     method: 'get',
@@ -35,6 +40,25 @@ app.get('/search', (req, res) => {
   }
   )
 });
+
+app.get('/autosuggestion',(req, res) => {
+  var keyword = req.query.value
+  var yelpURL = "https://api.yelp.com/v3/autocomplete?text="+keyword
+  console.log(yelpURL)
+  fetch(yelpURL,{
+    method: 'get',
+    headers: {
+      'Authorization': 'Bearer gzrK__dxK-vIHd7wejGW4TuHvno-nTGwvf-hpfF2sDLTmS1Jt6RWu54a8S7mkch_iMHta13T3BxB2dZG5c7QeEvFR5QWIsQcoOqa5pfcfuEr4coCX06bdG2Ik30bY3Yx'
+    },
+    mode: 'cors'
+  })
+  .then(response => response.json())
+  .then(json => {
+    res.json(({
+      "data": json
+    }))
+  })
+})
 
 app.get('/',(req,res) => {
 

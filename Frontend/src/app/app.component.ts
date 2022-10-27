@@ -10,7 +10,9 @@ const keyword = document.getElementById('keyword')
 export class AppComponent {
   title = 'Frontend';
 
-  onClick(){
-    myTest();
-  }
+  // options = ["Sushi","Pizza","Coffee"]
+
+  // onClick(){
+  //   myTest();
+  // }
 }

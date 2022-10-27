@@ -1,16 +1,22 @@
-<div class="image">
 
+<div class="image">  
 
 <div class="border rounded mx-auto w-50 p-5 align-items-center mt-5 bg-white">
 
-    <h4 class="text-center">Business Search</h4>
+    <h1 class="text-center">Business Search</h1>
     <form class="row g-3" method="get" action="/search">
       <div class="col-12">
-        <label class="form-label">Keyword<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
-        <input type="text" class="form-control" #keyword required/>
+          <label class="form-label">Keyword<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
+          <input matInput type="text" [matAutocomplete]="auto"  class="form-control" [formControl]="searchBusiness" #keyword required/> 
       </div>
-  
-  
+      <div>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="suggestions()">
+          <mat-option *ngFor="let item of options" [value]="item">
+          {{item}}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      
         <div class="col-md-6">
           <label class="form-label">Distance</label>
           <input type="text" class="form-control" #distance placeholder="10" value="10"/>
