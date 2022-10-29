@@ -1,11 +1,11 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/* @import '@angular/material/prebuilt-themes/indigopink.css'; */
 
 .image{
     background-size:cover; width:auto;
     min-height: 100vh;
     background-position: center;
     background-image:url('../../assets/city.jpg');
-    background-position:50% 50%;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
     background-attachment: fixed;
   }

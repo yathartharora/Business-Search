@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 declare function myTest(): any;
 const keyword = document.getElementById('keyword')
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

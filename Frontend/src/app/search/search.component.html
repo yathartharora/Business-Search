@@ -17,16 +17,16 @@
         </mat-autocomplete>
       </div>
       
-        <div class="col-md-6">
-          <label class="form-label">Distance</label>
-          <input type="text" class="form-control" #distance placeholder="10" value="10"/>
-        </div>
+      <div class="col-md-6">
+        <label class="form-label">Distance</label>
+        <input type="text" class="form-control" #distance placeholder="10" value="10"/>
+      </div>
   
-        <div class="col-md-6">
-          <label class="form-label">Category<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
-          <select class="form-select" #category required>
-            <option value="all">Default</option>
-            <option value="arts">Arts & Entertainment</option>
+      <div class="col-md-6">
+        <label class="form-label">Category<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
+        <select class="form-select" #category required>
+          <option value="all">Default</option>
+          <option value="arts">Arts & Entertainment</option>
             <option value="health">Health & Medical</option>
             <option value="hotels">Hotels & Travel</option>
             <option value="food">Food</option>
@@ -62,5 +62,5 @@
   </div>
 </section>
 
-    
 </div>
+<app-tablegenerate [data]="business" *ngIf="business"></app-tablegenerate>

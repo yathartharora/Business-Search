@@ -9,7 +9,12 @@ export class BookingsComponent implements OnInit {
 
   constructor() { }
 
+  getData(){
+    localStorage.setItem("Name","Sushi")
+    return localStorage
+  }
   ngOnInit() {
   }
+  
 
 }
