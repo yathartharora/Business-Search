@@ -8,20 +8,27 @@ import { Component, OnChanges, OnInit, SimpleChanges, Input } from '@angular/cor
 export class CardComponent implements OnChanges {
 
   @Input() data: any
+  @Input() data1: any
 
   constructor() { }
-  lat = 0
-  lng = 0
+ 
+  center!: google.maps.LatLngLiteral;
+  marker: any
 
   ngOnInit(): void {
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes["data"].currentValue)
-    this.lat = this.data.coordinates.latitude
-    this.lng = this.data.coordinates.longitude
-    console.log(this.lat)
-    console.log(this.lng)
+    this.center = {
+      lat: this.data.coordinates.latitude,
+      lng: this.data.coordinates.longitude
+    }
+    this.marker ={
+      position: { lat: this.data.coordinates.latitude, lng: this.data.coordinates.longitude },
+    }
+
+    console.log(this.data1)
   }
 
   displayCategories(){
@@ -32,16 +39,6 @@ export class CardComponent implements OnChanges {
     // return new Array(number);
     return new Array(number).fill(0)
       .map((n, index) => index + 1);
-  }
-
-  
-  mapOptions: google.maps.MapOptions = {
-    center: {lat: this.lat, lng: this.lng},
-    zoom:14
-  }
-
-  marker ={
-    position: { lat: this.lat, lng: this.lng },
   }
   
 }

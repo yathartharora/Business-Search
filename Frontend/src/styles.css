@@ -6,8 +6,9 @@
     background-size: cover;
     min-height: 100%;
     min-width: 100%;
+    width: auto;
     position: absolute;
-    object-position: 0% 120%;
+    object-position: 50% 50%;
     background-blend-mode: normal;
 }
 /* 

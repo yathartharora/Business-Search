@@ -80,6 +80,25 @@ app.get('/findBusiness',(req,res) => {
   })
 })
 
+app.get('/getReview',(req,res) => {
+  var id = req.query.id
+  var yelpURL = "https://api.yelp.com/v3/businesses/" + id + "/reviews"
+  console.log(yelpURL)
+  fetch(yelpURL,{
+    method: 'get',
+    headers: {
+      'Authorization': 'Bearer gzrK__dxK-vIHd7wejGW4TuHvno-nTGwvf-hpfF2sDLTmS1Jt6RWu54a8S7mkch_iMHta13T3BxB2dZG5c7QeEvFR5QWIsQcoOqa5pfcfuEr4coCX06bdG2Ik30bY3Yx'
+    },
+    mode: 'cors'
+  })
+  .then(response => response.json())
+  .then(json => {
+    res.json(({
+      "data":json
+    }))
+  })
+})
+
 app.get('/',(req,res) => {
 
 })

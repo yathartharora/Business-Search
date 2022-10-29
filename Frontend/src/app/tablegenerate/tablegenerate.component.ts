@@ -13,6 +13,7 @@ export class TablegenerateComponent implements OnChanges {
   constructor(private http: HttpClient){}
 
   businessdata: any
+  reviewData: any
   ngOnInit(): void {
     // console.log(this.data)
   }
@@ -27,6 +28,12 @@ export class TablegenerateComponent implements OnChanges {
     .subscribe(res => {
       this.businessdata =res
       this.businessdata = this.businessdata["data"]
+    })
+
+    this.http.get('http://localhost:3000/getReview?id='+id)
+    .subscribe(res=> {
+      this.reviewData = res
+      this.reviewData = this.reviewData["data"]
     })
   }
 

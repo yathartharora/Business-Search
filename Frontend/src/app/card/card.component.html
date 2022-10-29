@@ -1,10 +1,9 @@
 
-<div class="border rounded mx-auto w-50 p-5 align-items-center mt-5 bg-white">
+<div class="border rounded mx-auto w-50 align-items-center bg-white">
+  <br>
     <h2 class="text-center">{{data.name}}</h2>
-  
-    <mat-tab-group class=".bg-warning" mat-align-tabs="center" backgroundColor="accent">
-      
-
+    <mat-tab-group class="w-100" mat-align-tabs="center" backgroundColor="accent">
+        <br>
         <mat-tab label="Business details">
           <div class="row g-3 align-items-center mx-auto w-50">
         
@@ -40,25 +39,45 @@
             </div>
           </div>
 
-          <div class="align-items-center pt-3 mx-auto">
+          <div class="d-flex align-items-center justify-content-center">
             <button type="button" class="btn btn-danger mx-auto">Reserve Now</button>
           </div>
 
-          <div class="align-items-center pt-3 mx-auto">
-            <p>Share Now</p>
+          <div class="d-flex align-items-center justify-content-center pt-3">
+            <p>Share On: 
+              <a href="https://twitter.com/intent/tweet?text=Check%20{{data.name}}%20on%20Yelp.&url={{data.url}}" target="_blank"><img src="../../assets/twitter.png" style="height: 2em; width: 2em"/></a>
+              <a href="https://www.facebook.com/sharer/sharer.php?&u={{data.url}}" target="_blank"><img src="../../assets/facebook.png" style="height: 2em; width: 2em" /></a>
+            </p>
           </div>
           
 
         </mat-tab>
         <mat-tab label="Map Location">
           <div class="my-google-map">
-            <google-map [options]="mapOptions">
+            <google-map [center]="center" width="100%" height="500px">
               <map-marker [position]="marker.position"></map-marker>
             </google-map>
          </div>
         </mat-tab>
         <mat-tab label="Reviews"> 
-          Reviews
+          <div class="border-bottom bg-secondary">
+            <h4>{{data1.reviews[0].user.name}}</h4>
+            <p>Rating: {{data1.reviews[0].rating}}/5</p>
+            <p>{{data1.reviews[0].text}}</p>
+            <p>{{data1.reviews[0].time_created}}</p>
+          </div>
+          <div class="bg-light">
+            <h4>{{data1.reviews[1].user.name}}</h4>
+            <p>Rating: {{data1.reviews[1].rating}}/5</p>
+            <p>{{data1.reviews[1].text}}</p>
+            <p>{{data1.reviews[1].time_created}}</p>
+          </div>
+          <div class="border-top bg-secondary">
+            <h4>{{data1.reviews[2].user.name}}</h4>
+            <p>Rating: {{data1.reviews[2].rating}}/5</p>
+            <p>{{data1.reviews[2].text}}</p>
+            <p>{{data1.reviews[2].time_created}}</p>
+          </div>
         </mat-tab>
         
       </mat-tab-group>
