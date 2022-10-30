@@ -15,6 +15,7 @@ import { TablegenerateComponent } from './tablegenerate/tablegenerate.component'
 import { CardComponent } from './card/card.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReservationComponent } from './reservation/reservation.component';
 
 
 @NgModule({
@@ -26,6 +27,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     BusinesstableComponent,
     TablegenerateComponent,
     CardComponent,
+    ReservationComponent,
+    
   ],
   imports: [
     BrowserModule,

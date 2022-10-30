@@ -40,7 +40,7 @@
           </div>
 
           <div class="d-flex align-items-center justify-content-center">
-            <button type="button" class="btn btn-danger mx-auto">Reserve Now</button>
+            <button type="button" class="btn btn-primary btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Reserve Now</button>
           </div>
 
           <div class="d-flex align-items-center justify-content-center pt-3">
@@ -48,6 +48,30 @@
               <a href="https://twitter.com/intent/tweet?text=Check%20{{data.name}}%20on%20Yelp.&url={{data.url}}" target="_blank"><img src="../../assets/twitter.png" style="height: 2em; width: 2em"/></a>
               <a href="https://www.facebook.com/sharer/sharer.php?&u={{data.url}}" target="_blank"><img src="../../assets/facebook.png" style="height: 2em; width: 2em" /></a>
             </p>
+          </div>
+          <br>
+          <div class="d-flex align-items-center justify-content-center pt-3">
+            <div id="carouselExampleControls" class="carousel slide w-70 h-70 align-items-center" data-bs-ride="carousel">
+              <div class="carousel-inner w-60 h-60">
+                <div class="carousel-item active">
+                  <img src="{{data.photos[0]}}" class="d-block w-50 align-items-center" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="{{data.photos[1]}}" class="d-block w-50 align-items-center" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="{{data.photos[2]}}" class="d-block w-50 align-items-center" alt="...">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
           
 
@@ -79,7 +103,65 @@
             <p>{{data1.reviews[2].time_created}}</p>
           </div>
         </mat-tab>
-        
       </mat-tab-group>
-    
 </div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Reservation Form</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center">{{data.name}}</h3>
+        <form class="row g-3" method="get">
+          <div class="col-12">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-control" pattern="[^ @]*@[^ @]*" #email required />
+          </div>
+
+          <div class="col-12">
+            <label>Date</label>
+            <input type="date" class="form-control"  #date required/>
+          </div>
+
+          <div class="col-3">
+            <label>Time</label>
+            <select class="form-select" #timehour required>
+              <option value=""></option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+            </select>
+
+          </div>
+          <div class="col-3">
+            <label></label>
+            <select class="form-select" #timeminutes required>
+              <option value=""></option>
+              <option value="00">00</option>
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
+            </select>
+          </div>
+          <div class="col-12 text-center">
+            <button type="button" class="btn btn-danger mx-auto" (click)="makeReservation()">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-reservation *ngIf="reservation"></app-reservation> -->

@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   @ViewChild("location") location!: ElementRef;
   @ViewChild("checker") checker!: ElementRef;
   @ViewChild("table") table !: ElementRef;
+  @ViewChild("form") form !: ElementRef;
   // constructor(private service: SearchServiceService){}
   constructor(private http: HttpClient){}
   ngOnInit(): any{
@@ -42,7 +43,6 @@ export class SearchComponent implements OnInit {
         this.options.push(data["data"]["terms"][i]["text"])
     }
      })
-
   }
   options: string[] = []
   searchBusiness= new FormControl();
@@ -65,7 +65,7 @@ export class SearchComponent implements OnInit {
     this.location.nativeElement.value = ""
     this.checker.nativeElement.checked = false
     this.location.nativeElement.disabled = false
-    this.table.nativeElement.innerHTML = ""
+    
   }
 
 
@@ -81,6 +81,7 @@ export class SearchComponent implements OnInit {
   }
 
   fetchData(){
+    console.log(this.form)
     if(this.checker.nativeElement.checked==true){
       this.location.nativeElement.value = ""
       this.location.nativeElement.disabled = true
