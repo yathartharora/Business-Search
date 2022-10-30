@@ -1,11 +1,12 @@
 <nav class="h-3 mt-2">
   <ul class="nav justify-content-end">
     <li class="nav-item">
-      <button class="btn" routerLink="/search">Search</button>
+      <button class="btn" routerLink="/search" routerLinkActive="active">Search</button>
     </li>
     <li class="nav-item">
-      <a class="btn" routerLink="/bookings">My Bookings</a>
+      <a class="btn" routerLink="/bookings" routerLinkActive="active">My Bookings</a>
     </li>
   </ul>
 </nav>
-<app-search></app-search>
+<router-outlet></router-outlet>
+<!-- <app-search></app-search> -->

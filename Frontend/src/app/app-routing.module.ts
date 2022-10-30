@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { BookingsComponent } from './bookings/bookings.component';
-import { BusinesstableComponent } from './businesstable/businesstable.component';
+
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"/search"},

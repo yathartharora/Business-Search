@@ -16,7 +16,7 @@ import { CardComponent } from './card/card.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ReservationComponent } from './reservation/reservation.component';
-
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -41,12 +41,11 @@ import { ReservationComponent } from './reservation/reservation.component';
     ReactiveFormsModule,
     MatTableModule,
     MatTabsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  displayedColumns: string[] = ['Keyword','Image','Rating'];
-
 }

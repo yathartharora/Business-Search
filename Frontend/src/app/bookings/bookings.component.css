@@ -1,9 +1,17 @@
-.image{
-    background-size:cover; width:auto;
-    min-height: 100vh;
-    background-position: center;
-    background-image:url('../../assets/city.jpg');
-    background-position:50% 50%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
+table{
+    width: 75%;
+}
+td.mat-cell {
+    text-align: center;
+    justify-content:center;
+    vertical-align: middle;
+}
+
+th.mat-header-cell{
+    text-align: center;
+    justify-content:center;
+    color: black;
+    font-weight: bold;
+    font-size:small;
+    vertical-align: middle;
+}

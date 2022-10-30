@@ -81,7 +81,6 @@ export class SearchComponent implements OnInit {
   }
 
   fetchData(){
-    console.log(this.form)
     if(this.checker.nativeElement.checked==true){
       this.location.nativeElement.value = ""
       this.location.nativeElement.disabled = true
@@ -162,9 +161,7 @@ export class SearchComponent implements OnInit {
     console.log("Hello World")
   }
   callDetails(data:any){
-
     console.log("Hello World")
-    // console.log(data)
   }
   
 }

@@ -20,6 +20,10 @@ export class CardComponent implements OnChanges {
   center!: google.maps.LatLngLiteral;
   marker: any
   reservation:any
+  Bemail = new Array()
+  Bdate = new Array()
+  Btime = new Array()
+  Bbusiness = new Array()
 
   ngOnInit(): void {
     
@@ -58,11 +62,15 @@ export class CardComponent implements OnChanges {
     console.log(this.time_M.nativeElement.value)
 
     console.log(this.data.name)
+    this.Bemail.push(this.email.nativeElement.value)
+    this.Bbusiness.push(this.data.name)
+    this.Btime.push(this.time_H.nativeElement.value + ":"+this.time_M.nativeElement.value)
+    this.Bdate.push(this.date.nativeElement.value)
 
-    localStorage.setItem("email",this.email.nativeElement.value)
-    localStorage.setItem("time",this.time_H.nativeElement.value + ":"+this.time_M.nativeElement.value)
-    localStorage.setItem("businessName",this.data.name)
-    localStorage.setItem("date",this.date.nativeElement.value)
+    localStorage.setItem("email",JSON.stringify(this.Bemail))
+    localStorage.setItem("time",JSON.stringify(this.Btime))
+    localStorage.setItem("businessName",JSON.stringify(this.Bbusiness))
+    localStorage.setItem("date",JSON.stringify(this.Bdate))
     alert("Reservation created!")
   }
 
