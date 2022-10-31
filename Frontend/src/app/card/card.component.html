@@ -1,5 +1,5 @@
 
-<div class="border rounded mx-auto w-50 align-items-center bg-white">
+<div class="border rounded mx-auto w-50 align-items-center bg-white" id="card-data">
   <br>
     <h2 class="text-center">{{data.name}}</h2>
     <mat-tab-group class="w-100" mat-align-tabs="center" backgroundColor="accent">
@@ -164,4 +164,4 @@
     </div>
   </div>
 </div>
-<!-- <app-reservation *ngIf="reservation"></app-reservation> -->
+<app-bookings *ngIf="reservation"></app-bookings>

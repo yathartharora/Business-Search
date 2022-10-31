@@ -1,7 +1,8 @@
-import { Component, OnInit, VERSION, ViewChild, ElementRef, Injectable } from '@angular/core';
+import { Component, OnInit, VERSION, ViewChild, ElementRef, Injectable, Renderer2 } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, filter } from 'rxjs/operators';
+import { TablegenerateComponent } from '../tablegenerate/tablegenerate.component';
 
 
 @Component({
@@ -22,9 +23,11 @@ export class SearchComponent implements OnInit {
   @ViewChild("location") location!: ElementRef;
   @ViewChild("checker") checker!: ElementRef;
   @ViewChild("table") table !: ElementRef;
-  @ViewChild("form") form !: ElementRef;
+  @ViewChild(TablegenerateComponent) tabledata!: TablegenerateComponent;
+  @ViewChild("tableData") tableData !: ElementRef;
+
   // constructor(private service: SearchServiceService){}
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient,private renderer: Renderer2){}
   ngOnInit(): any{
     this.searchBusiness.valueChanges
     .pipe(
@@ -65,7 +68,13 @@ export class SearchComponent implements OnInit {
     this.location.nativeElement.value = ""
     this.checker.nativeElement.checked = false
     this.location.nativeElement.disabled = false
+    this.tabledata.clearData()
+    // this.tabledata.businessdata = ""
+    // console.log(this.tableData.nativeElement.value)
+    // this.renderer.setProperty(this.tableData.nativeElement,'innerHTML',"")
     
+    // document.getElementById("table-data")!.innerHTML = ""
+    // document.getElementById("card-data")!.innerHTML = ""    
   }
 
 

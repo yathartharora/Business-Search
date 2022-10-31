@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit,Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-tablegenerate',
@@ -10,12 +10,20 @@ export class TablegenerateComponent implements OnChanges {
 
   @Input() data: any
 
-  constructor(private http: HttpClient){}
+  @ViewChild("tableData") tableData!: any
+  constructor(private http: HttpClient,private renderer: Renderer2){}
 
   businessdata: any
   reviewData: any
+  noData: any
   ngOnInit(): void {
     // console.log(this.data)
+  }
+
+  public clearData(){
+    console.log("Hello World",this.tableData.nativeElement)
+    // this.tableData.nativeElement.empty()
+    // this.renderer.setProperty(this.tableData.nativeElement,'innerHTML',"")
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class BookingsComponent implements OnInit {
 
   constructor() { }
+  reservation: any
+  noreservation: any
   data= new Array()
   temp: any
   email: any
@@ -15,27 +17,15 @@ export class BookingsComponent implements OnInit {
   businessName: any
   date: any
   ngOnInit() {
-    // console.log("Hello World")
-    // console.log(localStorage.getItem("email"))
-    // console.log(localStorage.getItem("time"))
-    // console.log(localStorage.getItem("businessName"))
-    // this.data = {
-    //   "Email": localStorage.getItem("email"),
-    //   "Time": localStorage.getItem("time"),
-    //   "BusinessName": localStorage.getItem("businessName"),
-    //   "Date": localStorage.getItem("date")
-    // }
+    
+    // console.log(this.noreservation)
     this.email = JSON.parse(localStorage.getItem("email")!)
     this.time =JSON.parse(localStorage.getItem("time")!)
     this.businessName =JSON.parse(localStorage.getItem("businessName")!)
     this.date = JSON.parse(localStorage.getItem("date")!)    
-    // this.data = JSON.parse(this.temp)
-    // console.log(this.data[0])
-    // this.email = localStorage.getItem("email")?.split(",")
-    // this.time = localStorage.getItem("time")?.split(",")
-    // this.businessName = localStorage.getItem("businessName")?.split(",")
-    // this.date = localStorage.getItem("date")?.split(",")
-    
+    if(this.email.length>0){
+      this.reservation="yes"
+    }
     for(let i=0;i<this.email.length;i++){
       this.temp = {
         "Email": this.email[i],
@@ -45,8 +35,12 @@ export class BookingsComponent implements OnInit {
       }
       this.data.push(this.temp)
     }
-
-    console.log(this.data)
+    console.log(this.reservation)
+    if(this.reservation==undefined){
+      this.noreservation="No way"
+    }else{
+      this.noreservation = undefined
+    }
   }
 
   onDelete(curData: any){

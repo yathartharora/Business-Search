@@ -1,6 +1,10 @@
-<h2 class="text-center">List of your reservations</h2>
+<div *ngIf="noreservation">
+    <h2>No reservation found</h2>
+</div>
 
-<table mat-table [dataSource]="data" class="table text-center" style="margin-left: auto;margin-right:auto">
+<div *ngIf="reservation" class="table-responsive">
+    <h2 class="text-center">List of your reservations</h2>
+<table  mat-table [dataSource]="data" class="table table-responsive text-center table-sm" style="margin-left: auto;margin-right:auto">
     <ng-container matColumnDef="No">
         <th mat-header-cell *matHeaderCellDef> # </th>
         <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
@@ -34,3 +38,4 @@
     <tr class="text-center" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr class="text-center" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>

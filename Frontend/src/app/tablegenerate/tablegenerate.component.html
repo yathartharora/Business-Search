@@ -1,8 +1,6 @@
-
+<div *ngIf="data" id="tableData" #tableData>
 <table mat-table [dataSource]="data" class="table table-sm table-striped text-center" style="margin-left: auto;margin-right:auto">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+    <h2>{{data[0]}}</h2>
   
     <!-- Position Column -->
     <ng-container matColumnDef="No">
@@ -37,5 +35,5 @@
     <tr class="text-center" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-
   <app-card [data]="businessdata" [data1]="reviewData" *ngIf="businessdata;reviewData"></app-card>
+</div>
