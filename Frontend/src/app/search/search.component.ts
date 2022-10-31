@@ -24,7 +24,6 @@ export class SearchComponent implements OnInit {
   @ViewChild("checker") checker!: ElementRef;
   @ViewChild("table") table !: ElementRef;
   @ViewChild(TablegenerateComponent) tabledata!: TablegenerateComponent;
-  @ViewChild("tableData") tableData !: ElementRef;
 
   // constructor(private service: SearchServiceService){}
   constructor(private http: HttpClient,private renderer: Renderer2){}
@@ -68,13 +67,7 @@ export class SearchComponent implements OnInit {
     this.location.nativeElement.value = ""
     this.checker.nativeElement.checked = false
     this.location.nativeElement.disabled = false
-    this.tabledata.clearData()
-    // this.tabledata.businessdata = ""
-    // console.log(this.tableData.nativeElement.value)
-    // this.renderer.setProperty(this.tableData.nativeElement,'innerHTML',"")
-    
-    // document.getElementById("table-data")!.innerHTML = ""
-    // document.getElementById("card-data")!.innerHTML = ""    
+    // this.tabledata.clearData() 
   }
 
 
@@ -116,7 +109,6 @@ export class SearchComponent implements OnInit {
       .subscribe((res)=> {
         this.business = res
         this.business = this.business["data"]["businesses"]
-        //this.table.nativeElement.innerHTML = this.getDetails(this.business)
       })
       })
     }

@@ -1,5 +1,8 @@
 <div *ngIf="noreservation">
-    <h2>No reservation found</h2>
+    <div class=" border rounded bg-white mx-auto w-25 justify-content-center">
+        <span class="text-danger text-center align-middle"><h2><strong>No reservations to show</strong></h2></span>
+    </div>
+    
 </div>
 
 <div *ngIf="reservation" class="table-responsive">

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2 } from '@angular/core';
+import { iif } from 'rxjs';
 
 @Component({
   selector: 'app-tablegenerate',
@@ -16,18 +17,35 @@ export class TablegenerateComponent implements OnChanges {
   businessdata: any
   reviewData: any
   noData: any
+  notpresent: any
+  present:any
+  Nothing: any
+
+
   ngOnInit(): void {
-    // console.log(this.data)
+    
   }
 
-  public clearData(){
+  clearData(){
     console.log("Hello World",this.tableData.nativeElement)
-    // this.tableData.nativeElement.empty()
-    // this.renderer.setProperty(this.tableData.nativeElement,'innerHTML',"")
+    console.log(this.tableData.nativeElement.innerHTML)
+    console.log(this.tableData)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['data'].currentValue)
+    console.log(this.data)
+    if(this.data==undefined){
+      this.Nothing = true
+      this.present = undefined
+      this.notpresent = undefined
+    } else if(this.data.length==0){
+      this.present = true
+      this.notpresent = undefined
+    } 
+    else{
+      this.notpresent = true
+      this.present = undefined
+    }
   }
 
   getId(id: any){

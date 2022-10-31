@@ -35,7 +35,6 @@ export class BookingsComponent implements OnInit {
       }
       this.data.push(this.temp)
     }
-    console.log(this.reservation)
     if(this.reservation==undefined){
       this.noreservation="No way"
     }else{
