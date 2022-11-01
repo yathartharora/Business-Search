@@ -20,6 +20,12 @@ export class CardComponent implements OnChanges {
   center!: google.maps.LatLngLiteral;
   marker: any
   reservation:any
+  notReserved = true
+  reserved = false
+  time: any
+  businessName: any
+  Email: any
+  Date: any
   Bemail = new Array()
   Bdate = new Array()
   Btime = new Array()
@@ -30,6 +36,15 @@ export class CardComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.data)
+    if(localStorage.getItem("businessName")?.includes(this.data.name)){
+      this.reserved = true
+      this.notReserved = false
+    } else{
+      this.reserved = false
+      this.notReserved= true
+    }
+    // for(let i=0;i<localStorage.getItem("businessName")!.length;i++)
     this.center = {
       lat: this.data.coordinates.latitude,
       lng: this.data.coordinates.longitude
@@ -41,9 +56,9 @@ export class CardComponent implements OnChanges {
     console.log(this.data)
   }
 
-  displayCategories(){
-    console.log(this.data)
-  }
+  // displayCategories(){
+  //   console.log(this.data)
+  // }
 
   createRange(number: any){
     // return new Array(number);
@@ -51,8 +66,32 @@ export class CardComponent implements OnChanges {
       .map((n, index) => index + 1);
   }
 
-  reserve(){
-    this.reservation = "Clicked"
+
+  cancelReservation(){
+    this.Email = JSON.parse(localStorage.getItem("email")!)
+    this.businessName = JSON.parse(localStorage.getItem("businessName")!)
+    this.Date = JSON.parse(localStorage.getItem("date")!)
+    this.time = JSON.parse(localStorage.getItem("time")!)
+    let index = this.businessName.indexOf(this.data.name)
+
+    this.Email.splice(index,1)
+    this.businessName.splice(index,1)
+    this.Date.splice(index,1)
+    this.time.splice(index,1)
+
+    this.Email = JSON.stringify(this.Email)
+    this.businessName = JSON.stringify(this.businessName)
+    this.Date = JSON.stringify(this.Date)
+    this.time = JSON.stringify(this.time)
+
+    localStorage.setItem("email",this.Email)
+    localStorage.setItem("businessName",this.businessName)
+    localStorage.setItem("date",this.Date)
+    localStorage.setItem("time",this.time)
+
+    this.reserved = false
+    this.notReserved = true
+    alert("Reservation cancelled")
   }
 
   makeReservation(){

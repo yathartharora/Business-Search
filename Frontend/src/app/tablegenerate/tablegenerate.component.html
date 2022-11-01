@@ -10,8 +10,8 @@
 </div>
 
 <div *ngIf="notpresent" id="tableData" #tableData>
-<table mat-table [dataSource]="data" class="table table-sm table-striped text-center" style="margin-left: auto;margin-right:auto">
-    <h2>{{data[0]}}</h2>
+    <div class="justify-content-center mx-auto text-center col-lg-10 col-md-10 col-sm-4 col-xs-3 col-sm-*">
+  <table mat-table [dataSource]="data" class="table table-sm table-striped justify-content-center mx-auto text-center col-lg-10 col-md-10 col-sm-4 col-xs-3 col-sm-*">
   
     <!-- Position Column -->
     <ng-container matColumnDef="No">
@@ -45,6 +45,6 @@
     <tr class="text-center" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr class="text-center" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+</div>
   <app-card [data]="businessdata" [data1]="reviewData" *ngIf="businessdata;reviewData"></app-card>
 </div>

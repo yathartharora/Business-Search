@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2 } from '@angular/core';
-import { iif } from 'rxjs';
 
 @Component({
   selector: 'app-tablegenerate',
