@@ -51,7 +51,7 @@
           </div>
           <br>
           <div class="d-flex align-items-center justify-content-center pt-3">
-            <div id="carouselExampleControls" class="carousel slide w-70 h-70 align-items-center" data-bs-ride="carousel">
+            <div id="carouselExampleControls" class="carousel slide w-70 h-70 justify-content-center mx-auto" data-bs-ride="carousel">
               <div class="carousel-inner w-60 h-60">
                 <div class="carousel-item active">
                   <img src="{{data.photos[0]}}" class="d-block w-50 align-items-center" alt="...">
@@ -84,19 +84,19 @@
          </div>
         </mat-tab>
         <mat-tab label="Reviews"> 
-          <div class="border-bottom bg-secondary">
+          <div class="border-bottom bg-light">
             <h4>{{data1.reviews[0].user.name}}</h4>
             <p>Rating: {{data1.reviews[0].rating}}/5</p>
             <p>{{data1.reviews[0].text}}</p>
             <p>{{data1.reviews[0].time_created}}</p>
           </div>
-          <div class="bg-light">
+          <div class="bg-white">
             <h4>{{data1.reviews[1].user.name}}</h4>
             <p>Rating: {{data1.reviews[1].rating}}/5</p>
             <p>{{data1.reviews[1].text}}</p>
             <p>{{data1.reviews[1].time_created}}</p>
           </div>
-          <div class="border-top bg-secondary">
+          <div class="border-top bg-light">
             <h4>{{data1.reviews[2].user.name}}</h4>
             <p>Rating: {{data1.reviews[2].rating}}/5</p>
             <p>{{data1.reviews[2].text}}</p>

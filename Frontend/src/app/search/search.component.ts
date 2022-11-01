@@ -100,16 +100,10 @@ export class SearchComponent implements OnInit {
     }
     else{
       //Need to change this ---> Call the Geolocation API from the backend
-      this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.location.nativeElement.value + "&key=AIzaSyDb0g13Gt_bspPjhUGPWg6YrAMeUJ_NcEc")
-      .subscribe(res =>{ 
-        this.geolocation = res
-        this.latitude = this.geolocation["results"][0]["geometry"]["location"]['lat']
-        this.longitude = this.geolocation["results"][0]["geometry"]["location"]['lng']
-        this.http.get('http://localhost:3000/search?keyword='+this.keyword.nativeElement.value+'&distance='+this.distance.nativeElement.value+'&category='+this.category.nativeElement.value+'&latitude='+this.latitude + '&longitude=' + this.longitude)
+      this.http.get('http://localhost:3000/search?keyword='+this.keyword.nativeElement.value+'&distance='+this.distance.nativeElement.value+'&category='+this.category.nativeElement.value+ '&location='+this.location.nativeElement.value)
       .subscribe((res)=> {
         this.business = res
         this.business = this.business["data"]["businesses"]
-      })
       })
     }
      
