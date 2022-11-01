@@ -11,6 +11,7 @@ export class CardComponent implements OnChanges {
   @ViewChild("date") date!: ElementRef
   @ViewChild("timehour") time_H!: ElementRef
   @ViewChild("timeminutes") time_M!: ElementRef
+  @ViewChild("Close") Close!: ElementRef
 
   @Input() data: any
   @Input() data1: any
@@ -30,6 +31,9 @@ export class CardComponent implements OnChanges {
   Bdate = new Array()
   Btime = new Array()
   Bbusiness = new Array()
+  isOpen: any
+  isnotOpen: any
+  category = ""
 
   ngOnInit(): void {
     
@@ -53,7 +57,20 @@ export class CardComponent implements OnChanges {
       position: { lat: this.data.coordinates.latitude, lng: this.data.coordinates.longitude },
     }
 
-    console.log(this.data)
+    if(this.data.hours[0].is_open_now){
+      this.isOpen = true
+      this.isnotOpen = undefined
+    } else{
+      this.isOpen = undefined
+      this.isnotOpen = true
+    }
+
+    this.category = ''
+    for(let i =0;i<this.data.categories.length-1;i++){
+      this.category += this.data.categories[i].title + ' | '
+    }
+    this.category += this.data.categories[this.data.categories.length-1].title
+
   }
 
   // displayCategories(){
@@ -110,7 +127,10 @@ export class CardComponent implements OnChanges {
     localStorage.setItem("time",JSON.stringify(this.Btime))
     localStorage.setItem("businessName",JSON.stringify(this.Bbusiness))
     localStorage.setItem("date",JSON.stringify(this.Bdate))
+    this.reserved = true
+    this.notReserved = false
     alert("Reservation created!")
+    this.Close.nativeElement.click();
   }
 
   close(){
@@ -118,6 +138,12 @@ export class CardComponent implements OnChanges {
     this.date.nativeElement.value = ""
     this.time_H.nativeElement.value = ""
     this.time_M.nativeElement.value = ""
+  }
+
+  getBack(){
+    console.log("Back to Table")
+    let t = document.getElementById("tableData")
+    t?.scrollIntoView()
   }
   
 }

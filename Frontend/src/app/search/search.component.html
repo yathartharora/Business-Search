@@ -39,18 +39,16 @@
         <input type="text" class="form-control" #location required>
       </div>
   
-      <div class="d-flex flex-row">
-        <input type="checkbox" class="form-check-input" value="" (change)="locationChecker()" #checker>
+      <div class="justfy-content-center mx-auto">
+        <input type="checkbox" class="form-check-input m-1" value="" (change)="locationChecker()" #checker>
         <label class="form-check-label">Auto-detect my location</label>
       </div>
 
-      <div class="col-md-6 text-center">
-        <button type="button" class="btn btn-danger mx-auto" (click)="fetchData()">Submit</button>
+      <div class="justfy-content-center mx-auto col-lg-6 col-md-6 col-sm-4">
+          <button type="button" class="btn btn-danger m-3" (click)="fetchData()">Submit</button>
+          <button type="button" class="btn btn-primary m-3" (click)="onClear()">Clear</button>
       </div>
-
-      <div class="col-md-6 text-center">
-        <button type="button" class="btn btn-primary mx-auto" (click)="onClear()">Clear</button>
-      </div>
+      
     </form>
 </div>
 <br>

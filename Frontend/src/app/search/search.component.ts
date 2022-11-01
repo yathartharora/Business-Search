@@ -67,6 +67,7 @@ export class SearchComponent implements OnInit {
     this.location.nativeElement.value = ""
     this.checker.nativeElement.checked = false
     this.location.nativeElement.disabled = false
+    console.log(this.tabledata)
     // this.tabledata.clearData() 
   }
 
@@ -94,7 +95,8 @@ export class SearchComponent implements OnInit {
     .subscribe((res)=> {
       this.business = res
       this.business = this.business["data"]["businesses"]
-      //this.table.nativeElement.innerHTML = this.getDetails(this.business)
+      let t = document.getElementById("tableData")
+      t?.scrollIntoView()
     })
       })
     }
@@ -104,8 +106,12 @@ export class SearchComponent implements OnInit {
       .subscribe((res)=> {
         this.business = res
         this.business = this.business["data"]["businesses"]
+        let t = document.getElementById("tableData")
+        t?.scrollIntoView()
       })
     }
+
+
      
   }
 

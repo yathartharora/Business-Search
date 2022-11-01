@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2 } from '@angular/core';
+import { CardComponent } from '../card/card.component';
 
 @Component({
   selector: 'app-tablegenerate',
@@ -11,6 +12,7 @@ export class TablegenerateComponent implements OnChanges {
   @Input() data: any
 
   @ViewChild("tableData") tableData!: any
+  @ViewChild(CardComponent) CardData !: CardComponent
   constructor(private http: HttpClient,private renderer: Renderer2){}
 
   businessdata: any
@@ -52,13 +54,19 @@ export class TablegenerateComponent implements OnChanges {
     .subscribe(res => {
       this.businessdata =res
       this.businessdata = this.businessdata["data"]
+      let t = document.getElementById("CardData")
+      t?.scrollIntoView()
     })
 
     this.http.get('http://localhost:3000/getReview?id='+id)
     .subscribe(res=> {
       this.reviewData = res
       this.reviewData = this.reviewData["data"]
+      let t = document.getElementById("CardData")
+      console.log(t)
+      t?.scrollIntoView()
     })
+    
   }
 
   displayedColumns: string[] = ['No', 'Image','Name','Rating','Distance']

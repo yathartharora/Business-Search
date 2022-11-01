@@ -1,7 +1,8 @@
 
 <div class="container">
-<div class="border rounded mx-auto justify-content-center bg-white col-lg-6 col-md-8 col-sm-4 col-sm-*" id="card-data">
+<div class="border rounded mx-auto justify-content-center bg-white col-lg-6 col-md-8 col-sm-4 col-sm-*" id="CardData" >
   <br>
+    <mat-icon class="m-1" (click)="getBack()">arrow_back</mat-icon>
     <h2 class="text-center">{{data.name}}</h2>
     <mat-tab-group class="w-100" mat-align-tabs="center" backgroundColor="accent">
         <br>
@@ -18,8 +19,7 @@
           
           <div class="col-md-6">
             <h2 class="text-center">Category</h2>
-            <p *ngFor="let i of createRange(data.categories.length);" class="text-center">{{data.categories[i-1].title}}</p>
-            
+            <p class="text-center">{{category}}</p>
           </div>
             
 
@@ -33,16 +33,16 @@
               <p class="text-center">{{data.price}}</p>
             </div>
 
-            <div class="col-md-6" *ngIf="data.hours[0].is_open_now; else openNow">
+            <div class="col-md-6" *ngIf="isOpen">
               <h2 class="text-center">Status</h2>
               <p class="text-success text-center">Open Now</p>
             </div>
 
-            <div class="col-md-6">
-            <ng-template  #openNow>
+            <div class="col-md-6" *ngIf="isnotOpen">
+            
               <h2 class="text-center">Status</h2>
               <p class="text-danger text-center">Closed</p>
-            </ng-template>
+            
           </div>
 
             <div class="col-md-6">
@@ -62,6 +62,7 @@
           <div class="d-flex align-items-center justify-content-center pt-3">
             <p>Share On: 
               <a href="https://twitter.com/intent/tweet?text=Check%20{{data.name}}%20on%20Yelp.&url={{data.url}}" target="_blank"><img src="../../assets/twitter.png" style="height: 2em; width: 2em"/></a>
+
               <a href="https://www.facebook.com/sharer/sharer.php?&u={{data.url}}" target="_blank"><img src="../../assets/facebook.png" style="height: 2em; width: 2em" /></a>
             </p>
           </div>
@@ -70,14 +71,14 @@
             <div id="carouselExampleControls" class="carousel slide justify-content-center mx-auto" data-bs-ride="carousel">
               <div class="carousel-inner justify-content-center mx-auto col-lg-1 col-md-2 col-sm-1">
                 <div class="container justfy-content-center mx-auto">
-                  <div class="carousel-item active mx-auto justify-content-center col-1">
-                    <img src="{{data.photos[0]}}"  class="mx-auto d-block justfy-content-center mx-auto" style="height: 5em;">
+                  <div class="carousel-item active mx-auto justify-content-center col-2">
+                    <img src="{{data.photos[0]}}"  class="mx-auto d-block justfy-content-center mx-auto col-lg-6 col-md-8 col-sm-4" style="height: 10em;">
                   </div>
                   <div class="carousel-item col-3 justfy-content-center col-1">
-                    <img src="{{data.photos[1]}}" class="mx-auto d-block" style="height: 5em;">
+                    <img src="{{data.photos[1]}}" class="mx-auto d-block col-lg-6 col-md-8 col-sm-4" style="height: 10em;">
                   </div>
                   <div class="carousel-item col-3 justfy-content-center col-1">
-                    <img src="{{data.photos[2]}}" class="mx-auto d-block" style="height: 5em;">
+                    <img src="{{data.photos[2]}}" class="mx-auto d-block col-lg-6 col-md-8 col-sm-4" style="height: 10em;">
                   </div>
                 </div>
                 
@@ -174,12 +175,12 @@
             </select>
           </div>
           <div class="col-12 text-center">
-            <button type="button" class="btn btn-danger mx-auto" (click)="makeReservation()">Submit</button>
+            <button type="submit" class="btn btn-danger mx-auto" (click)="makeReservation()">Submit</button>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()" #Close>Close</button>
       </div>
     </div>
   </div>
