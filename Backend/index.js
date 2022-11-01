@@ -28,7 +28,7 @@ app.get('/search', (req, res) => {
       y = Math.round(y)
       console.log(y)
     
-      var yelpURL = 'https://api.yelp.com/v3/businesses/search?term='+keyword+'&categories='+category+'&radius='+y+'&latitude='+ latitude+'&longitude='+longitude
+      var yelpURL = 'https://api.yelp.com/v3/businesses/search?term='+keyword+'&categories='+category+'&radius='+y+'&latitude='+ latitude+'&longitude='+longitude+ '&limit=10'
       console.log(yelpURL)
       fetch(yelpURL,{
         method: 'get',
@@ -48,11 +48,11 @@ app.get('/search', (req, res) => {
       )
     })
   } else{
-    var y = parseInt(distance) * 1609.34
-  y = Math.round(y)
+    var y = Math.round(parseInt(distance) * 1609.34)
+  y = Math.floor(y)
   console.log(y)
 
-  var yelpURL = 'https://api.yelp.com/v3/businesses/search?term='+keyword+'&categories='+category+'&radius='+y+'&latitude='+ latitude+'&longitude='+longitude
+  var yelpURL = 'https://api.yelp.com/v3/businesses/search?term='+keyword+'&categories='+category+'&radius='+y+'&latitude='+ latitude+'&longitude='+longitude + '&limit=10'
   console.log(yelpURL)
   fetch(yelpURL,{
     method: 'get',

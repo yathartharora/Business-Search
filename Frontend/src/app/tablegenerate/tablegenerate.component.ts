@@ -32,7 +32,6 @@ export class TablegenerateComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.data)
     if(this.data==undefined){
       this.Nothing = true
       this.present = undefined
@@ -62,6 +61,6 @@ export class TablegenerateComponent implements OnChanges {
     })
   }
 
-  displayedColumns: string[] = ['No', 'Image','Name','Distance','Rating']
+  displayedColumns: string[] = ['No', 'Image','Name','Rating','Distance']
 
 }
