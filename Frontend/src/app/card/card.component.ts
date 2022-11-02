@@ -13,10 +13,12 @@ export class CardComponent implements OnChanges {
   @ViewChild("timehour") time_H!: ElementRef
   @ViewChild("timeminutes") time_M!: ElementRef
   @ViewChild("Close") Close!: ElementRef
+  @ViewChild("Form") Form!: ElementRef
 
   @Input() data: any
   @Input() data1: any
   reserveBusiness: any;
+  cardpresent = true
 
   constructor(private formbuilder: FormBuilder) { }
  
@@ -150,15 +152,16 @@ export class CardComponent implements OnChanges {
     this.reserved = true
     this.notReserved = false
     alert("Reservation created!")
+    // document.forms[0].reset()
     this.Close.nativeElement.click();
 
   }
 
   close(){
-    this.email.nativeElement.value = ""
-    this.date.nativeElement.value = ""
-    this.time_H.nativeElement.value = ""
-    this.time_M.nativeElement.value = ""
+    this.reserveBusiness.get('email').reset()
+    this.reserveBusiness.get('hour').reset()
+    this.reserveBusiness.get('minutes').reset()
+    this.reserveBusiness.get('date').reset()
   }
 
   getBack(){

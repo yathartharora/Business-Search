@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, filter } from 'rxjs/operators';
 import { TablegenerateComponent } from '../tablegenerate/tablegenerate.component';
+import { CardComponent } from '../card/card.component';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class SearchComponent implements OnInit {
   @ViewChild("location") location!: ElementRef;
   @ViewChild("checker") checker!: ElementRef;
   @ViewChild("table") table !: ElementRef;
+  @ViewChild(CardComponent) card!: CardComponent;
   @ViewChild(TablegenerateComponent) tabledata!: TablegenerateComponent;
   search: any;
 
@@ -70,7 +72,12 @@ export class SearchComponent implements OnInit {
     this.location.nativeElement.value = ""
     this.checker.nativeElement.checked = false
     this.location.nativeElement.disabled = false
-    console.log(this.tabledata)
+    this.tabledata.notpresent = false
+    if(this.tabledata.card==undefined){
+
+    }else{
+      this.tabledata.card.cardpresent = false
+    }
     // this.tabledata.clearData() 
   }
 
@@ -87,6 +94,12 @@ export class SearchComponent implements OnInit {
   }
 
   fetchData(){
+    //console.log(this.tabledata.card.cardpresent)
+    if(this.tabledata.card == undefined){
+
+    }else{
+      this.tabledata.card.cardpresent = false
+    }
     if(this.checker.nativeElement.checked==true){
       this.location.nativeElement.value = ""
       this.location.nativeElement.disabled = true
@@ -113,59 +126,6 @@ export class SearchComponent implements OnInit {
         t?.scrollIntoView()
       })
     }
-
-
-     
+   
   }
-
-
-  getDetails(data: any){
-    const res = data["data"]["businesses"]
-    var html = ""
-    var m
-    // console.log(data["data"])
-    // console.log(res)
-    if(res.length==0){
-      html = "No response"
-    } else{
-      // html = ` \
-      // <mat-table [dataSource]=res>\
-      //   <ng-container matColumnDef="id">\
-      //     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>\
-      //     <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>\
-      //   </ng-container>\
-      //   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>\
-      //   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>\
-      // </mat-table>`
-      html = `\
-      <table class="table table-sm table-striped text-center">\
-      <tr">\
-      <th class="text-center">#</th>\
-      <th class="text-center">Image</th>\
-      <th class="text-center"><a>Business Name</a></th>\
-      <th class="text-center" ng-click=${console.log("Testing")}><a>Rating</a></th>\
-      <th class="text-center" onclick="distanceSort()"><a>Distance(miles)</a></th>\
-      </tr>`
-      var i=0;
-    for(i=0;i<res.length;i++){
-        
-        var _id = String(res[i]["id"])
-        var d = parseInt(res[i]["distance"]) * 0.000621371
-        m = d.toFixed(2);
-        //console.log(typeof _id)
-        // onclick="restaurantDetails(${_id})"
-        html += `<tr><td>` + (i+1) + `</td><td (click)="callDetails('${_id}')"><img style="width: 100px; height: 100px" alt="Image not present" src=`+ res[i]["image_url"] + `></img></td><td>` + res[i]["name"]+'<td>'+res[i]["rating"]+'</td><td>'+m+'</td></tr>'
-    }
-
-    }
-    return html
-  }
-
-  nameSort(){
-    console.log("Hello World")
-  }
-  callDetails(data:any){
-    console.log("Hello World")
-  }
-  
 }

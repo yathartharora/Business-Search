@@ -76,52 +76,6 @@ export class BookingsComponent implements OnChanges {
     }
   }
 
-  // ngOnInit():void{
-    // this.email = JSON.parse(localStorage.getItem("email")!)
-    // this.time =JSON.parse(localStorage.getItem("time")!)
-    // this.businessName =JSON.parse(localStorage.getItem("businessName")!)
-    // this.date = JSON.parse(localStorage.getItem("date")!) 
-    // if(this.email.length>0){
-    //   this.reservation="yes"
-    // } else{
-    //   this.noreservation="yes"
-    // }
-    // for(let i=0;i<this.email.length;i++){
-    //   this.temp = {
-    //     "Email": this.email[i],
-    //     "Time": this.time[i],
-    //     "Name": this.businessName[i],
-    //     "Date": this.date[i]
-    //   }
-    //   this.data.push(this.temp)
-    // }
-  // }
-  // ngOnChanges(changes: SimpleChanges): void {
-    
-  //   // console.log(this.noreservation)
-  //   this.email = JSON.parse(localStorage.getItem("email")!)
-  //   // this.time =JSON.parse(localStorage.getItem("time")!)
-  //   // this.businessName =JSON.parse(localStorage.getItem("businessName")!)
-  //   // this.date = JSON.parse(localStorage.getItem("date")!)    
-  //   if(this.email.length>0){
-  //     this.reservation="yes"
-  //   }
-  //   // for(let i=0;i<this.email.length;i++){
-  //   //   this.temp = {
-  //   //     "Email": this.email[i],
-  //   //     "Time": this.time[i],
-  //   //     "Name": this.businessName[i],
-  //   //     "Date": this.date[i]
-  //   //   }
-  //   //   this.data.push(this.temp)
-  //   // }
-    // if(this.reservation==undefined){
-    //   this.noreservation="No way"
-    // }else{
-    //   this.noreservation = undefined
-    // }
-  // }
-
   onDelete(curData: any){
     this.email = JSON.parse(localStorage.getItem("email")!)
     this.time =JSON.parse(localStorage.getItem("time")!)

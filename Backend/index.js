@@ -17,6 +17,10 @@ app.get('/search', (req, res) => {
   var longitude = req.query.longitude
   var category = req.query.category
   var location = req.query.location
+  console.log(distance)
+  if(distance==""){
+    distance = '10'
+  }
 
   if(latitude==undefined && longitude==undefined){
     fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyDb0g13Gt_bspPjhUGPWg6YrAMeUJ_NcEc")

@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" *ngIf="cardpresent">
 <div class="border rounded mx-auto justify-content-center bg-white col-lg-6 col-md-8 col-sm-4 col-sm-*" id="CardData" >
   <br>
     <mat-icon class="m-1" (click)="getBack()">arrow_back</mat-icon>
@@ -136,7 +136,7 @@
       </div>
       <div class="modal-body">
         <h3 class="text-center">{{data.name}}</h3>
-        <form class="row g-3" method="get" [formGroup]="reserveBusiness" (ngSubmit)="makeReservation()">
+        <form class="row g-3" method="get" [formGroup]="reserveBusiness" (ngSubmit)="makeReservation()" id="Form" #Form>
           <div class="col-12">
             <label class="form-label">E-mail</label>
             <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" #email />
@@ -149,7 +149,7 @@
 
           <div class="col-12">
             <label>Date</label>
-            <input type="date" class="form-control" min="CurrentDate" formControlName="date" [ngClass]="{ 'is-invalid': submitted && f.date.errors }"  #date required/>
+            <input type="date" class="form-control" [min]="CurrentDate" formControlName="date" [ngClass]="{ 'is-invalid': submitted && f.date.errors }"  #date required/>
             <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
               <div *ngIf="f.date.errors.required">Date is required</div>
             </div>

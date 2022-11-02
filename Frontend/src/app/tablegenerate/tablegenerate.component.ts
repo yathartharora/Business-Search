@@ -14,8 +14,8 @@ export class TablegenerateComponent implements OnChanges {
   @Input() data: any
   
   @ViewChild("tableData") tableData!: any
-  @ViewChild(CardComponent) CardData !: CardComponent
-  constructor(private http: HttpClient,private renderer: Renderer2){}
+  @ViewChild(CardComponent) card!: CardComponent;
+  constructor(private http: HttpClient){}
 
   businessdata: any
   reviewData: any
@@ -52,7 +52,12 @@ export class TablegenerateComponent implements OnChanges {
   }
 
   getId(id: any){
-    console.log(id)
+    console.log(this.card)
+    if(this.card == undefined){
+
+    } else{
+      this.card.cardpresent = true
+    }
     this.http.get('http://localhost:3000/findBusiness?id='+id)
     .subscribe(res => {
       this.businessdata =res
