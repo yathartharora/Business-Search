@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges, Input, ViewChild, ElementRef } from '@angular/core';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-card',
@@ -15,8 +16,9 @@ export class CardComponent implements OnChanges {
 
   @Input() data: any
   @Input() data1: any
+  reserveBusiness: any;
 
-  constructor() { }
+  constructor(private formbuilder: FormBuilder) { }
  
   center!: google.maps.LatLngLiteral;
   marker: any
@@ -34,13 +36,15 @@ export class CardComponent implements OnChanges {
   isOpen: any
   isnotOpen: any
   category = ""
+  CurrentDate: any
+  submitted = false
+  okay: any
 
-  ngOnInit(): void {
-    
-  }
+  
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.data)
+    this.okay = localStorage.getItem("email")
     if(localStorage.getItem("businessName")?.includes(this.data.name)){
       this.reserved = true
       this.notReserved = false
@@ -71,11 +75,23 @@ export class CardComponent implements OnChanges {
     }
     this.category += this.data.categories[this.data.categories.length-1].title
 
+    this.CurrentDate = new Date().toISOString().slice(0,10);
+
+    this.reserveBusiness = this.formbuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      date: ['',Validators.required],
+      hour: ['',Validators.required],
+      minutes: ['',Validators.required]
+  });
   }
 
   // displayCategories(){
   //   console.log(this.data)
   // }
+
+  get f() { return this.reserveBusiness.controls; }
+
+  contactFormModalEmail = new FormControl('', Validators.email);
 
   createRange(number: any){
     // return new Array(number);
@@ -112,12 +128,16 @@ export class CardComponent implements OnChanges {
   }
 
   makeReservation(){
-    console.log(this.email.nativeElement.value)
-    console.log(this.date.nativeElement.value)
-    console.log(this.time_H.nativeElement.value)
-    console.log(this.time_M.nativeElement.value)
+    this.submitted = true;
+    if(this.reserveBusiness.invalid){
+      return
+    }
 
-    console.log(this.data.name)
+    this.Bemail = JSON.parse(localStorage.getItem("email")!)
+    this.Bbusiness = JSON.parse(localStorage.getItem("businessName")!)
+    this.Bdate = JSON.parse(localStorage.getItem("date")!)
+    this.Btime = JSON.parse(localStorage.getItem("time")!)
+
     this.Bemail.push(this.email.nativeElement.value)
     this.Bbusiness.push(this.data.name)
     this.Btime.push(this.time_H.nativeElement.value + ":"+this.time_M.nativeElement.value)
@@ -131,6 +151,7 @@ export class CardComponent implements OnChanges {
     this.notReserved = false
     alert("Reservation created!")
     this.Close.nativeElement.click();
+
   }
 
   close(){

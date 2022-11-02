@@ -1,6 +1,6 @@
 import { Component, OnInit, VERSION, ViewChild, ElementRef, Injectable, Renderer2 } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common/http';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, filter } from 'rxjs/operators';
 import { TablegenerateComponent } from '../tablegenerate/tablegenerate.component';
 
@@ -24,9 +24,10 @@ export class SearchComponent implements OnInit {
   @ViewChild("checker") checker!: ElementRef;
   @ViewChild("table") table !: ElementRef;
   @ViewChild(TablegenerateComponent) tabledata!: TablegenerateComponent;
+  search: any;
 
   // constructor(private service: SearchServiceService){}
-  constructor(private http: HttpClient,private renderer: Renderer2){}
+  constructor(private http: HttpClient,private formbuilder: FormBuilder){}
   ngOnInit(): any{
     this.searchBusiness.valueChanges
     .pipe(
@@ -45,6 +46,7 @@ export class SearchComponent implements OnInit {
         this.options.push(data["data"]["terms"][i]["text"])
     }
      })
+
   }
   options: string[] = []
   searchBusiness= new FormControl();
@@ -52,8 +54,9 @@ export class SearchComponent implements OnInit {
   latitude: any
   longitude: any
   business: any
+  submitted = false
 
-
+  get f() { return this.search.controls; } 
   suggestions() {
     this.http.get('http://localhost:3000/autosuggestion?value='+this.keyword.nativeElement.value)
     .subscribe(res =>{

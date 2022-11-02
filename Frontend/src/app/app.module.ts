@@ -17,6 +17,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ReservationComponent } from './reservation/reservation.component';
 import {MatIconModule} from '@angular/material/icon';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import {MatIconModule} from '@angular/material/icon';
     TablegenerateComponent,
     CardComponent,
     ReservationComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatIconModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { 
 }

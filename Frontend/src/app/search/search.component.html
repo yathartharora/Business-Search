@@ -6,8 +6,9 @@
     <form class="row g-3" method="get" action="/search">
       <div class="col-md-12 col-sm-4 col-xs-4">
           <label class="form-label">Keyword<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
-          <input matInput type="text" [matAutocomplete]="auto"  class="form-control" [formControl]="searchBusiness" #keyword required /> 
+          <input matInput type="text" [matAutocomplete]="auto" [formControl]="searchBusiness"  class="form-control" #keyword />
       </div>
+
       <div>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="suggestions()">
           <mat-option *ngFor="let item of options" [value]="item">

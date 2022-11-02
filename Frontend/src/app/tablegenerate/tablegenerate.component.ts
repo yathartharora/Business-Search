@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { CardComponent } from '../card/card.component';
+
 
 @Component({
   selector: 'app-tablegenerate',
   templateUrl: './tablegenerate.component.html',
-  styleUrls: ['./tablegenerate.component.css']
+  styleUrls: ['./tablegenerate.component.css'],
 })
 export class TablegenerateComponent implements OnChanges {
 
   @Input() data: any
-
+  
   @ViewChild("tableData") tableData!: any
   @ViewChild(CardComponent) CardData !: CardComponent
   constructor(private http: HttpClient,private renderer: Renderer2){}
@@ -34,6 +36,7 @@ export class TablegenerateComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+  
     if(this.data==undefined){
       this.Nothing = true
       this.present = undefined

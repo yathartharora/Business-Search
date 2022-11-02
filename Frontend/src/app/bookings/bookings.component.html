@@ -2,10 +2,9 @@
     <div class=" border rounded bg-white mx-auto w-25 justify-content-center">
         <span class="text-danger text-center align-middle"><h2><strong>No reservations to show</strong></h2></span>
     </div>
-    
 </div>
 
-<div *ngIf="reservation" class="table-responsive">
+<div *ngIf="reservation" >
     <h2 class="text-center">List of your reservations</h2>
 <table  mat-table [dataSource]="data" class="table table-responsive text-center table-sm" style="margin-left: auto;margin-right:auto">
     <ng-container matColumnDef="No">

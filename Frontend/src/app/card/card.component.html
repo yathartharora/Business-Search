@@ -8,8 +8,6 @@
         <br>
         <mat-tab label="Business details">
           <div class="container">
-
-
           <div class="row g-3 mx-auto mt-2">
             
             <div class="col-md-6">
@@ -138,20 +136,28 @@
       </div>
       <div class="modal-body">
         <h3 class="text-center">{{data.name}}</h3>
-        <form class="row g-3" method="get">
+        <form class="row g-3" method="get" [formGroup]="reserveBusiness" (ngSubmit)="makeReservation()">
           <div class="col-12">
             <label class="form-label">E-mail</label>
-            <input type="email" class="form-control" pattern="[^ @]*@[^ @]*" #email required />
+            <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" #email />
+            
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
           </div>
 
           <div class="col-12">
             <label>Date</label>
-            <input type="date" class="form-control"  #date required/>
+            <input type="date" class="form-control" min="CurrentDate" formControlName="date" [ngClass]="{ 'is-invalid': submitted && f.date.errors }"  #date required/>
+            <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+              <div *ngIf="f.date.errors.required">Date is required</div>
+            </div>
           </div>
 
           <div class="col-3">
             <label>Time</label>
-            <select class="form-select" #timehour required>
+            <select class="form-select" formControlName="hour" [ngClass]="{ 'is-invalid': submitted && f.hour.errors }" #timehour required>
               <option value=""></option>
               <option value="10">10</option>
               <option value="11">11</option>
@@ -166,7 +172,7 @@
           </div>
           <div class="col-3">
             <label></label>
-            <select class="form-select" #timeminutes required>
+            <select class="form-select" formControlName="minutes" [ngClass]="{ 'is-invalid': submitted && f.minutes.errors }" #timeminutes required>
               <option value=""></option>
               <option value="00">00</option>
               <option value="15">15</option>
@@ -175,7 +181,7 @@
             </select>
           </div>
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-danger mx-auto" (click)="makeReservation()">Submit</button>
+            <button type="submit" class="btn btn-danger mx-auto">Submit</button>
           </div>
         </form>
       </div>
@@ -184,5 +190,6 @@
       </div>
     </div>
   </div>
+  
 </div>
-<app-bookings *ngIf="reservation"></app-bookings>
+<app-bookings [DATA]="okay" *ngIf="reservation"></app-bookings>

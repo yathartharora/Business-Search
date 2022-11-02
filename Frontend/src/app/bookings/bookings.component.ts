@@ -1,30 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
   styleUrls: ['./bookings.component.css']
 })
-export class BookingsComponent implements OnInit {
+export class BookingsComponent implements OnChanges {
+
+  @Input() DATA: any
 
   constructor() { }
-  reservation: any
-  noreservation: any
+  reservation = false
+  noreservation = false
   data= new Array()
   temp: any
   email: any
   time: any
   businessName: any
   date: any
-  ngOnInit() {
-    
-    // console.log(this.noreservation)
+
+  ngOnInit(){
+    this.callTable()
+  }
+
+  callTable(){
+    this.data = []
     this.email = JSON.parse(localStorage.getItem("email")!)
     this.time =JSON.parse(localStorage.getItem("time")!)
     this.businessName =JSON.parse(localStorage.getItem("businessName")!)
-    this.date = JSON.parse(localStorage.getItem("date")!)    
+    this.date = JSON.parse(localStorage.getItem("date")!) 
+    console.log(this.email.length)
     if(this.email.length>0){
-      this.reservation="yes"
+      this.reservation = true
+      this.noreservation = false
+    } else{
+      this.noreservation= true
+      this.reservation = false
     }
     for(let i=0;i<this.email.length;i++){
       this.temp = {
@@ -35,19 +46,88 @@ export class BookingsComponent implements OnInit {
       }
       this.data.push(this.temp)
     }
-    if(this.reservation==undefined){
-      this.noreservation="No way"
-    }else{
-      this.noreservation = undefined
+  }
+
+  ngOnChanges(changes: SimpleChanges): void{
+    console.log(this.email.length)
+    console.log("Fired")
+    this.email = JSON.parse(localStorage.getItem("email")!)
+    this.time =JSON.parse(localStorage.getItem("time")!)
+    this.businessName =JSON.parse(localStorage.getItem("businessName")!)
+    this.date = JSON.parse(localStorage.getItem("date")!) 
+    
+    if(this.email.length>0){
+      this.reservation = true
+      this.noreservation = false
+      console.log("True")
+    } else{
+      this.noreservation= true
+      this.reservation = false
+      console.log(this.reservation)
+    }
+    for(let i=0;i<this.email.length;i++){
+      this.temp = {
+        "Email": this.email[i],
+        "Time": this.time[i],
+        "Name": this.businessName[i],
+        "Date": this.date[i]
+      }
+      this.data.push(this.temp)
     }
   }
+
+  // ngOnInit():void{
+    // this.email = JSON.parse(localStorage.getItem("email")!)
+    // this.time =JSON.parse(localStorage.getItem("time")!)
+    // this.businessName =JSON.parse(localStorage.getItem("businessName")!)
+    // this.date = JSON.parse(localStorage.getItem("date")!) 
+    // if(this.email.length>0){
+    //   this.reservation="yes"
+    // } else{
+    //   this.noreservation="yes"
+    // }
+    // for(let i=0;i<this.email.length;i++){
+    //   this.temp = {
+    //     "Email": this.email[i],
+    //     "Time": this.time[i],
+    //     "Name": this.businessName[i],
+    //     "Date": this.date[i]
+    //   }
+    //   this.data.push(this.temp)
+    // }
+  // }
+  // ngOnChanges(changes: SimpleChanges): void {
+    
+  //   // console.log(this.noreservation)
+  //   this.email = JSON.parse(localStorage.getItem("email")!)
+  //   // this.time =JSON.parse(localStorage.getItem("time")!)
+  //   // this.businessName =JSON.parse(localStorage.getItem("businessName")!)
+  //   // this.date = JSON.parse(localStorage.getItem("date")!)    
+  //   if(this.email.length>0){
+  //     this.reservation="yes"
+  //   }
+  //   // for(let i=0;i<this.email.length;i++){
+  //   //   this.temp = {
+  //   //     "Email": this.email[i],
+  //   //     "Time": this.time[i],
+  //   //     "Name": this.businessName[i],
+  //   //     "Date": this.date[i]
+  //   //   }
+  //   //   this.data.push(this.temp)
+  //   // }
+    // if(this.reservation==undefined){
+    //   this.noreservation="No way"
+    // }else{
+    //   this.noreservation = undefined
+    // }
+  // }
 
   onDelete(curData: any){
     this.email = JSON.parse(localStorage.getItem("email")!)
     this.time =JSON.parse(localStorage.getItem("time")!)
     this.businessName =JSON.parse(localStorage.getItem("businessName")!)
     this.date = JSON.parse(localStorage.getItem("date")!) 
-    
+
     this.email.splice(curData,1)
     this.time.splice(curData,1)
     this.businessName.splice(curData,1)
@@ -63,7 +143,16 @@ export class BookingsComponent implements OnInit {
     localStorage.setItem("businessName",this.businessName)
     localStorage.setItem("date",this.date)
     alert("Reservation cancelled")
-    window.location.reload()
+    this.email = JSON.parse(localStorage.getItem("email")!)
+    if(this.email.length>0){
+      this.reservation= true
+    }else{
+      this.reservation= false
+    this.noreservation = true
+    }
+    this.callTable()
+    
+    //window.location.reload()
   }
   displayedColumns = ["No","Name","Date","Time","Email","Icon"]
 
