@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, filter } from 'rxjs/operators';
 import { TablegenerateComponent } from '../tablegenerate/tablegenerate.component';
 import { CardComponent } from '../card/card.component';
+import { MatTooltip } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @Component({
@@ -27,15 +29,18 @@ export class SearchComponent implements OnInit {
   @ViewChild(CardComponent) card!: CardComponent;
   @ViewChild(TablegenerateComponent) tabledata!: TablegenerateComponent;
   search: any;
+  isLoading: boolean | undefined;
 
   // constructor(private service: SearchServiceService){}
   constructor(private http: HttpClient,private formbuilder: FormBuilder){}
   ngOnInit(): any{
     this.searchBusiness.valueChanges
     .pipe(
+      debounceTime(500),
+      tap(() => this.isLoading = true),
      switchMap(value => this.http.get('http://localhost:3000/autosuggestion?value='+this.keyword.nativeElement.value)
      .pipe(
-      
+      finalize(() => this.isLoading = false),
      ))
     )
      .subscribe((data: any) => {

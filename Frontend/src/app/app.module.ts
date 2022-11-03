@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
     MatTableModule,
     MatTabsModule,
     GoogleMapsModule,
-    MatIconModule
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
