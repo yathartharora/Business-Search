@@ -2,14 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3000
 const cors = require('cors')
-var https = require('https')
-const { url } = require('inspector')
-const { response } = require('express')
+const fetch = require('node-fetch')
 app.use(cors({
   origin: 'http://localhost:4200'
 }));
 
 app.get('/search', (req, res) => {
+  
   
   var keyword = req.query.keyword
   var distance = req.query.distance
@@ -50,7 +49,7 @@ app.get('/search', (req, res) => {
         }))
       }
       )
-    })
+    }).catch()
   } else{
     var y = Math.round(parseInt(distance) * 1609.34)
   y = Math.floor(y)

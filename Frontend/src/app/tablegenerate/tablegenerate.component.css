@@ -1,8 +1,15 @@
-table{
-    width: 75%;
-}
-th.mat-header-cell{
+
+td.mat-cell{
     text-align: center;
+    padding: auto;
+    justify-content:center;
+    color: black;
+    font-size:small;
+    vertical-align: middle;
+}
+th.mat-header-cell {
+    text-align: center;
+    padding: auto;
     justify-content:center;
     color: black;
     font-weight: bold;

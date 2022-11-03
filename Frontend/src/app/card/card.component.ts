@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,11 @@ export class CardComponent implements OnChanges {
   @ViewChild("timeminutes") time_M!: ElementRef
   @ViewChild("Close") Close!: ElementRef
   @ViewChild("Form") Form!: ElementRef
+
+  @Input() present: any
+  @Input() notpresent: any 
+
+  @Output() goback = new EventEmitter();
 
   @Input() data: any
   @Input() data1: any
@@ -165,9 +170,12 @@ export class CardComponent implements OnChanges {
   }
 
   getBack(){
-    console.log("Back to Table")
-    let t = document.getElementById("tableData")
-    t?.scrollIntoView()
+
+    this.goback.emit()
+    this.notpresent = true
+    this.cardpresent = false
+    // let t = document.getElementById("tableData")
+    // t?.scrollIntoView()
   }
   
 }

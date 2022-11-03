@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NgModel } from '@angular/forms';
 import { CardComponent } from '../card/card.component';
 
 
@@ -58,6 +57,8 @@ export class TablegenerateComponent implements OnChanges {
     } else{
       this.card.cardpresent = true
     }
+    this.notpresent = false
+    this.present = false
     this.http.get('http://localhost:3000/findBusiness?id='+id)
     .subscribe(res => {
       this.businessdata =res

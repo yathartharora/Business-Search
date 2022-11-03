@@ -1,10 +1,10 @@
 
 <div class="container">
-<div class="border rounded mx-auto col-lg-5 col-md-8 col-sm-4 col-sm-* p-3 justfy-content-center mt-5 bg-white">
+<div class="border rounded mx-auto col-lg-5 col-md-8 col-sm-12 col-sm-* p-3 justfy-content-center mt-5 bg-white">
 
     <h1 class="text-center">Business Search</h1>
     <form class="row g-3" method="get" action="/search" ngNativeValidate>
-      <div class="col-md-12 col-sm-4 col-xs-4">
+      <div class="col-md-12 col-sm-12 col-xs-4">
           <label class="form-label">Keyword<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
           <input matInput type="text" [matAutocomplete]="auto" [formControl]="searchBusiness"  class="form-control" [ngModel] #keyword required />
       </div>
@@ -20,12 +20,12 @@
         </mat-autocomplete>
       </div>
       
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-6">
         <label class="form-label">Distance</label>
         <input type="text" class="form-control" #distance placeholder="10" required  />
       </div>
   
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-6">
         <label class="form-label">Category<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
         <select class="form-select" #category required >
           <option value="all">Default</option>
@@ -38,7 +38,7 @@
       </div>
 
   
-      <div class="col-sm-6 col-md-12">
+      <div class="col-sm-12 col-md-12">
         <label class="form-label">Location<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
         <input type="text" class="form-control" #location required />
       </div>
@@ -48,7 +48,7 @@
         <label class="form-check-label">Auto-detect my location</label>
       </div>
 
-      <div class="justfy-content-center mx-auto col-lg-6 col-md-6 col-sm-4">
+      <div class="justfy-content-center mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 col-8">
           <button type="button" class="btn btn-danger m-3" (click)="fetchData()">Submit</button>
           <button type="button" class="btn btn-primary m-3" (click)="onClear()">Clear</button>
       </div>

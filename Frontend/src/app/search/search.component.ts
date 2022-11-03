@@ -4,9 +4,6 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, filter } from 'rxjs/operators';
 import { TablegenerateComponent } from '../tablegenerate/tablegenerate.component';
 import { CardComponent } from '../card/card.component';
-import { MatTooltip } from '@angular/material/tooltip';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 @Component({
   selector: 'app-search',

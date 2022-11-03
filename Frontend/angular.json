@@ -32,8 +32,7 @@
 "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
 "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
 "./node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
-"./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
-"src/styles.scss"
+"./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss"
             ],
             "scripts": [
               "./src/assets/helper.js",
@@ -47,7 +46,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
