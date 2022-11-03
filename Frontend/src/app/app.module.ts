@@ -18,7 +18,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { ReservationComponent } from './reservation/reservation.component';
 import {MatIconModule} from '@angular/material/icon';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -46,7 +46,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
     MatTabsModule,
     GoogleMapsModule,
     MatIconModule,
-    BrowserAnimationsModule
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

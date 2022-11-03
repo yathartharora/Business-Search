@@ -10,9 +10,8 @@
       </div>
 
       <div>
-        
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="suggestions()">
-          <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner mode="indeterminate" color="accent"></mat-spinner></mat-option>
+          <mat-option *ngIf="isLoading" ><mat-spinner style="margin: 0 auto;"  diameter="50"></mat-spinner></mat-option>
           <ng-container *ngIf="!isLoading">
           <mat-option *ngFor="let item of options" [value]="item">
           {{item}}

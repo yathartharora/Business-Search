@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): any{
     this.searchBusiness.valueChanges
     .pipe(
-      debounceTime(500),
+      debounceTime(200),
       tap(() => this.isLoading = true),
      switchMap(value => this.http.get('http://localhost:3000/autosuggestion?value='+this.keyword.nativeElement.value)
      .pipe(
@@ -45,7 +45,6 @@ export class SearchComponent implements OnInit {
     )
      .subscribe((data: any) => {
       this.options = []
-      // console.log(data["data"]["categories"].length)
       for (let i=0;i<data["data"]["categories"].length;i++){
           this.options.push(data["data"]["categories"][i]["title"])
       }
