@@ -46,6 +46,7 @@ export class CardComponent implements OnChanges {
   CurrentDate: any
   submitted = false
   okay: any
+  notavailable: any
 
   
 
@@ -68,13 +69,23 @@ export class CardComponent implements OnChanges {
       position: { lat: this.data.coordinates.latitude, lng: this.data.coordinates.longitude },
     }
 
-    if(this.data.hours[0].is_open_now){
-      this.isOpen = true
-      this.isnotOpen = undefined
+    if(this.data.hours){
+      if(this.data.hours[0].is_open_now){
+        this.isOpen = true
+        this.isnotOpen = undefined
+        this.notavailable = undefined
+      } else{
+        this.isOpen = undefined
+        this.isnotOpen = true
+        this.notavailable = undefined
+      }
     } else{
+      this.data.hours = "NA"
       this.isOpen = undefined
-      this.isnotOpen = true
+      this.isnotOpen = undefined
+      this.notavailable = true
     }
+    
 
     this.category = ''
     for(let i =0;i<this.data.categories.length-1;i++){
@@ -87,10 +98,27 @@ export class CardComponent implements OnChanges {
     this.reserveBusiness = this.formbuilder.group({
       email: ['', [Validators.required, Validators.email]],
       date: ['',Validators.required],
-      hour: ['',Validators.required],
-      minutes: ['',Validators.required]
+      hour: ['10',Validators.required],
+      minutes: ['00',Validators.required]
   });
+
+  console.log("Price",this.data.price)
+
+  console.log("Phone ",this.data.phone)
+
+  if(this.data.location.display_address.length==undefined){
+    this.data.location.display_address = "N/A"
   }
+  if(this.data.price==undefined || this.data.price==""){
+    this.data.price = "N/A"
+  }
+  if(this.data.phone == undefined || this.data.phone==""){
+    this.data.phone = "N/A"
+  }
+  if(this.data.categories==undefined || this.data.categories==""){
+    this.data.categories = "N/A"
+  }
+}
 
   // displayCategories(){
   //   console.log(this.data)
@@ -158,8 +186,8 @@ export class CardComponent implements OnChanges {
     this.notReserved = false
     alert("Reservation created!")
     // document.forms[0].reset()
-    this.Close.nativeElement.click();
-
+    // this.Close.nativeElement.click();
+    // this.close()
   }
 
   close(){
@@ -170,12 +198,8 @@ export class CardComponent implements OnChanges {
   }
 
   getBack(){
-
     this.goback.emit()
     this.notpresent = true
     this.cardpresent = false
-    // let t = document.getElementById("tableData")
-    // t?.scrollIntoView()
   }
-  
 }

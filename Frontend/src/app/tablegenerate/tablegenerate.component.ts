@@ -64,7 +64,7 @@ export class TablegenerateComponent implements OnChanges {
       this.businessdata =res
       this.businessdata = this.businessdata["data"]
       let t = document.getElementById("CardData")
-      t?.scrollIntoView()
+      // t?.scrollIntoView()
     })
 
     this.http.get('http://localhost:3000/getReview?id='+id)
@@ -73,11 +73,10 @@ export class TablegenerateComponent implements OnChanges {
       this.reviewData = this.reviewData["data"]
       let t = document.getElementById("CardData")
       console.log(t)
-      t?.scrollIntoView()
+      // t?.scrollIntoView()
     })
     
   }
-
   displayedColumns: string[] = ['No', 'Image','Name','Rating','Distance']
 
 }

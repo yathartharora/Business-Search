@@ -74,6 +74,7 @@ export class SearchComponent implements OnInit {
     this.checker.nativeElement.checked = false
     this.location.nativeElement.disabled = false
     this.tabledata.notpresent = false
+    this.tabledata.present = false
     if(this.tabledata.card==undefined){
 
     }else{
