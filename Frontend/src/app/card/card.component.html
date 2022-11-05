@@ -54,7 +54,7 @@
             </div>
   
             <div *ngIf="notReserved" class="d-flex align-items-center justify-content-center">
-              <button type="button" class="btn btn-primary btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Reserve Now</button>
+              <button type="button" class="btn btn-primary btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Reset()">Reserve Now</button>
             </div>
   
             <div *ngIf="reserved" class="d-flex align-items-center justify-content-center">

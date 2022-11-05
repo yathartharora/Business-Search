@@ -162,7 +162,16 @@ export class CardComponent implements OnChanges {
     alert("Reservation cancelled")
   }
 
+  Reset(){
+    this.email.nativeElement.value = ""
+    this.date.nativeElement.value = ""
+    this.time_H.nativeElement.value = ""
+    this.time_M.nativeElement.value = ""
+    this.Form.nativeElement.reset()
+  }
+
   makeReservation(){
+    
     this.submitted = true;
     if(this.reserveBusiness.invalid){
       return
@@ -185,16 +194,14 @@ export class CardComponent implements OnChanges {
     this.reserved = true
     this.notReserved = false
     alert("Reservation created!")
-    // document.forms[0].reset()
-    // this.Close.nativeElement.click();
-    // this.close()
+    this.Close.nativeElement.click();
   }
 
   close(){
-    this.reserveBusiness.get('email').reset()
-    this.reserveBusiness.get('hour').reset()
-    this.reserveBusiness.get('minutes').reset()
-    this.reserveBusiness.get('date').reset()
+    // this.reserveBusiness.get('email').reset()
+    // this.reserveBusiness.get('hour').reset()
+    // this.reserveBusiness.get('minutes').reset()
+    // this.reserveBusiness.get('date').reset()
   }
 
   getBack(){

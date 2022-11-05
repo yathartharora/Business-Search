@@ -1,11 +1,17 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.port || 3000
 const cors = require('cors')
 const fetch = require('node-fetch')
-app.use(cors({
-  origin: 'http://localhost:4200'
-}));
+// app.use(cors({
+//   origin: 'http://localhost:4200'
+// }));
+
+app.use(express.static(process.cwd() + "../Frontenf"))
+
+app.get('/okay',(req,res) =>{
+  console.log("Hello World")
+})
 
 app.get('/search', (req, res) => {
   
