@@ -181,7 +181,19 @@ export class CardComponent implements OnChanges {
     this.Bbusiness = JSON.parse(localStorage.getItem("businessName")!)
     this.Bdate = JSON.parse(localStorage.getItem("date")!)
     this.Btime = JSON.parse(localStorage.getItem("time")!)
-
+    console.log(this.Bemail)
+    console.log(this.Bbusiness)
+    
+    if(this.Bemail==null){
+      this.Bemail = new Array()
+    } if(this.Bbusiness==null){
+      this.Bbusiness = new Array()
+    }if(this.Bdate==null){
+      this.Bdate = new Array()
+    }if(this.Btime==null){
+      this.Btime = new Array()
+    }
+    
     this.Bemail.push(this.email.nativeElement.value)
     this.Bbusiness.push(this.data.name)
     this.Btime.push(this.time_H.nativeElement.value + ":"+this.time_M.nativeElement.value)

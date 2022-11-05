@@ -1,21 +1,19 @@
 const express = require('express')
 const app = express()
-const port = process.env.port || 3000
+const port = process.env.port || 8080
 const cors = require('cors')
 const fetch = require('node-fetch')
-// app.use(cors({
-//   origin: 'http://localhost:4200'
-// }));
-
-app.use(express.static(process.cwd() + "../Frontenf"))
+app.use(cors({
+  origin: 'https://findyourbusiness-367518.wm.r.appspot.com'
+}));
+app.set('trust proxy', true);
 
 app.get('/okay',(req,res) =>{
   console.log("Hello World")
+  res.json("Hello World")
 })
 
 app.get('/search', (req, res) => {
-  
-  
   var keyword = req.query.keyword
   var distance = req.query.distance
   var latitude = req.query.latitude
@@ -80,7 +78,6 @@ app.get('/search', (req, res) => {
   }
   )
   }
-  // distance = parseInt(distance) * 1609.34
   
 });
 
@@ -141,9 +138,9 @@ app.get('/getReview',(req,res) => {
   })
 })
 
-app.get('/',(req,res) => {
+// app.get('/',(req,res) => {
 
-})
+// })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

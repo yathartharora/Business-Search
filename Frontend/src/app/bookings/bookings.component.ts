@@ -12,14 +12,15 @@ export class BookingsComponent implements OnChanges {
   constructor() { }
   reservation = false
   noreservation = false
-  data= new Array()
+  data = new Array()
   temp: any
-  email: any
-  time: any
-  businessName: any
-  date: any
+  email: any| string
+  time: any | string
+  businessName: any | string
+  date: any | string
 
   ngOnInit(){
+    this.email = ""
     this.callTable()
   }
 
@@ -29,28 +30,33 @@ export class BookingsComponent implements OnChanges {
     this.time =JSON.parse(localStorage.getItem("time")!)
     this.businessName =JSON.parse(localStorage.getItem("businessName")!)
     this.date = JSON.parse(localStorage.getItem("date")!) 
-    console.log(this.email.length)
-    if(this.email.length>0){
-      this.reservation = true
-      this.noreservation = false
-    } else{
+    if(this.email!=undefined){
+      if(this.email.length>0){
+        this.reservation = true
+        this.noreservation = false
+        for(let i=0;i<this.email.length;i++){
+          this.temp = {
+            "Email": this.email[i],
+            "Time": this.time[i],
+            "Name": this.businessName[i],
+            "Date": this.date[i]
+          }
+          this.data.push(this.temp)
+        }
+      } else{
+        this.noreservation= true
+        this.reservation = false
+      }
+    }else{
       this.noreservation= true
       this.reservation = false
     }
-    for(let i=0;i<this.email.length;i++){
-      this.temp = {
-        "Email": this.email[i],
-        "Time": this.time[i],
-        "Name": this.businessName[i],
-        "Date": this.date[i]
-      }
-      this.data.push(this.temp)
-    }
+    
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void{
     console.log(this.email.length)
-    console.log("Fired")
     this.email = JSON.parse(localStorage.getItem("email")!)
     this.time =JSON.parse(localStorage.getItem("time")!)
     this.businessName =JSON.parse(localStorage.getItem("businessName")!)
@@ -109,5 +115,4 @@ export class BookingsComponent implements OnChanges {
     //window.location.reload()
   }
   displayedColumns = ["No","Name","Date","Time","Email","Icon"]
-
 }

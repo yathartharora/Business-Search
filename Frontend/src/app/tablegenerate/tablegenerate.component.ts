@@ -59,7 +59,7 @@ export class TablegenerateComponent implements OnChanges {
     }
     this.notpresent = false
     this.present = false
-    this.http.get('http://localhost:3000/findBusiness?id='+id)
+    this.http.get('https://yelpdata01.wm.r.appspot.com/findBusiness?id='+id)
     .subscribe(res => {
       this.businessdata =res
       this.businessdata = this.businessdata["data"]
@@ -67,7 +67,7 @@ export class TablegenerateComponent implements OnChanges {
       // t?.scrollIntoView()
     })
 
-    this.http.get('http://localhost:3000/getReview?id='+id)
+    this.http.get('https://yelpdata01.wm.r.appspot.com/getReview?id='+id)
     .subscribe(res=> {
       this.reviewData = res
       this.reviewData = this.reviewData["data"]
