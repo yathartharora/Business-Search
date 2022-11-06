@@ -2,10 +2,10 @@
   <div class="border rounded mx-auto col-lg-6 col-md-8 col-sm-12 col-sm-* p-3 justfy-content-center mt-5 bg-white">
   
       <h1 class="text-center">Business Search</h1>
-      <form class="row g-3" method="get" action="/search" ngNativeValidate>
+      <form class="row g-3" method="get" action="/search" id="form" ngNativeValidate>
         <div class="col-md-12 col-sm-12 col-xs-4">
             <label class="form-label">Keyword<strong><span aria-label="required" style="color:red ;">*</span></strong></label>
-            <input matInput type="text" [matAutocomplete]="auto" [formControl]="searchBusiness"  class="form-control" [ngModel] #keyword required />
+            <input matInput type="text" [matAutocomplete]="auto" [formControl]="searchBusiness" name="keyword"  class="form-control" [ngModel] #keyword required />
         </div>
   
         <div>
@@ -21,7 +21,7 @@
         
         <div class="col-md-6 col-sm-6">
           <label class="form-label">Distance</label>
-          <input type="text" class="form-control" #distance placeholder="10" required  />
+          <input type="text" class="form-control" #distance placeholder="10" />
         </div>
     
         <div class="col-md-6 col-sm-6">
@@ -47,7 +47,7 @@
           <label class="form-check-label ml-4">Auto-detect my location</label>
         </div>
   
-        <div class="justfy-content-center mx-auto col-lg-8 col-md-8 col-sm-6 col-xs-12 col-8">
+        <div class="col-md-12 text-center">
             <button type="button" class="btn btn-danger m-3" (click)="fetchData()">Submit</button>
             <button type="button" class="btn btn-primary " (click)="onClear()">Clear</button>
         </div>

@@ -97,6 +97,9 @@ export class SearchComponent implements OnInit {
 
   fetchData(){
     //console.log(this.tabledata.card.cardpresent)
+    //$('input[name="keyword"]')[0].setCustomValidity("Please select one of the fruits.");
+
+    (<HTMLInputElement>document.getElementById('form'))!.reportValidity()
     if(this.tabledata.card == undefined){
 
     }else{
