@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,Input, OnChanges, SimpleChanges, ViewChild, Renderer2, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 
+//https://yelpdata01.wm.r.appspot.com
 
 @Component({
   selector: 'app-tablegenerate',
@@ -59,7 +60,7 @@ export class TablegenerateComponent implements OnChanges {
     }
     this.notpresent = false
     this.present = false
-    this.http.get('https://yelpdata01.wm.r.appspot.com/findBusiness?id='+id)
+    this.http.get('http://localhost:8080/findBusiness?id='+id)
     .subscribe(res => {
       this.businessdata =res
       this.businessdata = this.businessdata["data"]
@@ -67,7 +68,7 @@ export class TablegenerateComponent implements OnChanges {
       // t?.scrollIntoView()
     })
 
-    this.http.get('https://yelpdata01.wm.r.appspot.com/getReview?id='+id)
+    this.http.get('http://localhost:8080/getReview?id='+id)
     .subscribe(res=> {
       this.reviewData = res
       this.reviewData = this.reviewData["data"]

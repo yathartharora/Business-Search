@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     .pipe(
       debounceTime(200),
       tap(() => this.isLoading = true),
-     switchMap(value => this.http.get('https://yelpdata01.wm.r.appspot.com/autosuggestion?value='+this.keyword.nativeElement.value)
+     switchMap(value => this.http.get('http://localhost:8080/autosuggestion?value='+this.keyword.nativeElement.value)
      .pipe(
       finalize(() => this.isLoading = false),
      ))
@@ -51,6 +51,7 @@ export class SearchComponent implements OnInit {
      })
 
   }
+  
   options: string[] = []
   searchBusiness= new FormControl();
   geolocation: any
@@ -61,7 +62,7 @@ export class SearchComponent implements OnInit {
 
   get f() { return this.search.controls; } 
   suggestions() {
-    this.http.get('https://yelpdata01.wm.r.appspot.com/autosuggestion?value='+this.keyword.nativeElement.value)
+    this.http.get('http://localhost:8080/autosuggestion?value='+this.keyword.nativeElement.value)
     .subscribe(res =>{
       // console.log(res)
     })
@@ -112,7 +113,7 @@ export class SearchComponent implements OnInit {
         this.geolocation = res
         this.latitude = this.geolocation["loc"].split(",")[0]
         this.longitude = this.geolocation["loc"].split(",")[1]
-        this.http.get('https://yelpdata01.wm.r.appspot.com/search?keyword='+this.keyword.nativeElement.value+'&distance='+this.distance.nativeElement.value+'&category='+this.category.nativeElement.value+'&latitude='+this.latitude + '&longitude=' + this.longitude)
+        this.http.get('http://localhost:8080/search?keyword='+this.keyword.nativeElement.value+'&distance='+this.distance.nativeElement.value+'&category='+this.category.nativeElement.value+'&latitude='+this.latitude + '&longitude=' + this.longitude)
     .subscribe((res)=> {
       this.business = res
       this.business = this.business["data"]["businesses"]
@@ -123,7 +124,7 @@ export class SearchComponent implements OnInit {
     }
     else{
       //Need to change this ---> Call the Geolocation API from the backend
-      this.http.get('https://yelpdata01.wm.r.appspot.com/search?keyword='+this.keyword.nativeElement.value+'&distance='+this.distance.nativeElement.value+'&category='+this.category.nativeElement.value+ '&location='+this.location.nativeElement.value)
+      this.http.get('http://localhost:8080/search?keyword='+this.keyword.nativeElement.value+'&distance='+this.distance.nativeElement.value+'&category='+this.category.nativeElement.value+ '&location='+this.location.nativeElement.value)
       .subscribe((res)=> {
         this.business = res
         this.business = this.business["data"]["businesses"]

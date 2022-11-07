@@ -3,8 +3,9 @@ const app = express()
 const port = process.env.port || 8080
 const cors = require('cors')
 const fetch = require('node-fetch')
+//https://findyourbusiness-367518.wm.r.appspot.com
 app.use(cors({
-  origin: 'https://findyourbusiness-367518.wm.r.appspot.com'
+  origin: 'http://localhost:4200'
 }));
 app.set('trust proxy', true);
 
