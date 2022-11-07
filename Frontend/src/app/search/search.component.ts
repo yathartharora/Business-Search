@@ -68,7 +68,7 @@ export class SearchComponent implements OnInit {
   }
   onClear(){
     this.keyword.nativeElement.value = ""
-    this.distance.nativeElement.value = "10"
+    this.distance.nativeElement.value = ""
     this.category.nativeElement.value = "all"
     this.location.nativeElement.value = ""
     this.checker.nativeElement.checked = false
