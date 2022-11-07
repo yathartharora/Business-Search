@@ -11,12 +11,12 @@
 
 <div *ngIf="notpresent" id="tableData" #table>
     <div class="justify-content-center mx-auto text-center col-lg-12 col-md-10 col-sm-4 col-xs-4 col-sm-*">
-  <table mat-table [dataSource]="data"  class="table table-sm table-striped justify-content-center mx-auto text-center col-lg-10 col-md-10 col-sm-4 col-xs-3 col-sm-*">
+  <table mat-table [dataSource]="data"  class="border rounded table table-sm table-striped justify-content-center mx-auto text-center col-lg-10 col-md-10 col-sm-4 col-xs-3 col-sm-*">
   
     <!-- Position Column -->
     <ng-container matColumnDef="No">
       <th mat-header-cell *matHeaderCellDef> # </th>
-      <td mat-cell *matCellDef="let element; let i = index" (click)='getId(element.id)'> {{i+1}} </td>
+      <td mat-cell *matCellDef="let element; let i = index" (click)='getId(element.id)'><strong> {{i+1}} </strong></td>
     </ng-container>
   
     <!-- Name Column -->

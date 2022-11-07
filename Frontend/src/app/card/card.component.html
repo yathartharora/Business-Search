@@ -1,5 +1,5 @@
 <div class="container" *ngIf="cardpresent">
-  <div class="border rounded mx-auto justify-content-center bg-white col-lg-8 col-md-8 col-sm-4 col-sm-*" id="CardData" >
+  <div class="border rounded mx-auto justify-content-center bg-white col-lg-8 col-md-8 col-sm-4 col-sm-* p-0" id="CardData" >
     <br>
       <mat-icon class="m-1" (click)="getBack()">arrow_back</mat-icon>
       <h2 class="text-center">{{data.name}}</h2>
@@ -49,7 +49,7 @@
   
               <div class="col-md-6">
                 <h2 class="text-center">Visit yelp for more</h2>
-                <p class="text-center"><a href="{{data.url}}" target="_blank">Business Link</a></p>
+                <p class="text-center"><a href="{{data.url}}" target="_blank"><u>Business Link</u></a></p>
               </div>
             </div>
   
@@ -110,19 +110,19 @@
           </mat-tab>
           <mat-tab label="Reviews"> 
             <div class="border-bottom bg-light">
-              <h4>{{data1.reviews[0].user.name}}</h4>
+              <h4><strong>{{data1.reviews[0].user.name}}</strong></h4>
               <p>Rating: {{data1.reviews[0].rating}}/5</p>
               <p>{{data1.reviews[0].text}}</p>
               <p>{{data1.reviews[0].time_created}}</p>
             </div>
             <div class="bg-white">
-              <h4>{{data1.reviews[1].user.name}}</h4>
+              <h4><strong>{{data1.reviews[1].user.name}}</strong></h4>
               <p>Rating: {{data1.reviews[1].rating}}/5</p>
               <p>{{data1.reviews[1].text}}</p>
               <p>{{data1.reviews[1].time_created}}</p>
             </div>
             <div class="border-top bg-light">
-              <h4>{{data1.reviews[2].user.name}}</h4>
+              <h4><strong>{{data1.reviews[2].user.name}}</strong></h4>
               <p>Rating: {{data1.reviews[2].rating}}/5</p>
               <p>{{data1.reviews[2].text}}</p>
               <p>{{data1.reviews[2].time_created}}</p>
@@ -160,7 +160,7 @@
                 <div *ngIf="f.date.errors.required">Date is required</div>
               </div>
             </div>
-  
+            <br>
             <div class="row no-gutters">
             <div class="col-md-3 col-4">
               <label>Time</label>
@@ -175,9 +175,9 @@
                 <option value="17">17</option>
               </select>
             </div>
-            <div class="col-md-1 col-1 align-items-center">
+            <div class="col-md-1 pt-3 col-1 center-block text-center">
               <label></label>
-              <span> : </span>
+              <span class="justify-content-center d-flex"> : </span>
             </div>
             <div class="col-md-3 col-4 p-2">
               <label></label>
@@ -188,9 +188,9 @@
                 <option value="45">45</option>
               </select>
             </div>
-            <div class="col-md-3 col-1 p-2">
+            <div class="col-md-3 col-1 pt-3 center-block text-center">
               <label></label>
-              <mat-icon>access_time</mat-icon>
+              <mat-icon class="justify-content-center d-flex">access_time</mat-icon>
             </div>
           </div>
             <div class="col-12 text-center">
@@ -199,7 +199,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()" #Close>Close</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" (click)="close()" #Close>Close</button>
         </div>
       </div>
     </div>
