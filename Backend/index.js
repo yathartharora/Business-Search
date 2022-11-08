@@ -5,9 +5,10 @@ const cors = require('cors')
 const fetch = require('node-fetch')
 //https://findyourbusiness-367518.wm.r.appspot.com
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: 'https://findyourbusiness-367518.wm.r.appspot.com'
 }));
 app.set('trust proxy', true);
+app.set('json spaces', 10);
 
 app.get('/okay',(req,res) =>{
   console.log("Hello World")
@@ -21,6 +22,9 @@ app.get('/search', (req, res) => {
   var longitude = req.query.longitude
   var category = req.query.category
   var location = req.query.location
+
+  res.setHeader('Content-Type', 'application/json');
+
   console.log(distance)
   if(distance==""){
     distance = '10'
@@ -28,9 +32,13 @@ app.get('/search', (req, res) => {
 
   if(latitude==undefined && longitude==undefined){
     fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyDb0g13Gt_bspPjhUGPWg6YrAMeUJ_NcEc")
+    .catch(error => {
+      console.log(error)
+    })
     .then(response =>response.json())
     .then(json => {
-      latitude = json["results"][0]["geometry"]["location"]['lat']
+      try {
+        latitude = json["results"][0]["geometry"]["location"]['lat']
       longitude = json["results"][0]["geometry"]["location"]['lng']
       var y = parseInt(distance) * 1609.34
       y = Math.round(y)
@@ -52,9 +60,14 @@ app.get('/search', (req, res) => {
           "statusMessage": "Success",
           "data": json
         }))
+      })
+        
+      } catch (error) {
+        console.log(error)
       }
-      )
-    }).catch()
+      
+    })
+
   } else{
     var y = Math.round(parseInt(distance) * 1609.34)
   y = Math.floor(y)
@@ -78,6 +91,9 @@ app.get('/search', (req, res) => {
     }))
   }
   )
+  .catch(error => {
+    console.log(error)
+  })
   }
   
 });
@@ -85,6 +101,8 @@ app.get('/search', (req, res) => {
 app.get('/autosuggestion',(req, res) => {
   var keyword = req.query.value
   var yelpURL = "https://api.yelp.com/v3/autocomplete?text="+keyword
+  res.setHeader('Content-Type', 'application/json');
+
   console.log(yelpURL)
   fetch(yelpURL,{
     method: 'get',
@@ -99,11 +117,16 @@ app.get('/autosuggestion',(req, res) => {
       "data": json
     }))
   })
+  .catch(error => {
+    console.log(error)
+  })
 })
 
 app.get('/findBusiness',(req,res) => {
   var id = req.query.id
   var yelpURL = "https://api.yelp.com/v3/businesses/" + id
+  res.setHeader('Content-Type', 'application/json');
+
   console.log(yelpURL)
   fetch(yelpURL,{
     method: 'get',
@@ -117,6 +140,9 @@ app.get('/findBusiness',(req,res) => {
     res.json(({
       "data":json
     }))
+  })
+  .catch(error => {
+    console.log(error)
   })
 })
 
@@ -136,6 +162,9 @@ app.get('/getReview',(req,res) => {
     res.json(({
       "data":json
     }))
+  })
+  .catch(error => {
+    console.log(error)
   })
 })
 

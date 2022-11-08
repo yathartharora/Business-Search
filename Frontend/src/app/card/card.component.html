@@ -41,7 +41,6 @@
               </div>
   
               <div class="col-md-6" *ngIf="isnotOpen">
-              
                 <h2 class="text-center">Status</h2>
                 <p class="text-danger text-center">Closed</p>
               
@@ -73,19 +72,19 @@
               <div id="carouselExampleControls" class="carousel slide justify-content-center mx-auto" data-bs-ride="carousel">
                 <div class="carousel-inner justify-content-center ">
                   <div class="container justfy-content-center mx-auto">
-                    <div class="carousel-item active mx-auto justify-content-center col-10">
-                      <img src="{{data.photos[0]}}"  class="mx-auto d-block justfy-content-center mx-auto col-lg-8 col-md-8 col-sm-4" alt="Not Available" style="height: 12em;">
+                    <div class="carousel-item active mx-auto justify-content-center" *ngIf="data.photos[0]">
+                      <img src="{{data.photos[0]}}"  class="mx-auto d-block justfy-content-center mx-auto col-lg-4 col-md-4 col-sm-4 col-xs-1 col-8" alt="Not Available" style="height: 12em;">
                     </div>
-                    <div class="carousel-item col-3 justfy-content-center col-10">
-                      <img src="{{data.photos[1]}}" class="mx-auto d-block col-lg-6 col-md-8 col-sm-4" alt="Not available" style="height: 12em;">
+                    <div class="carousel-item mx-auto justfy-content-center" *ngIf="data.photos[1]">
+                      <img src="{{data.photos[1]}}" class="mx-auto d-block justfy-content-center mx-auto col-lg-4 col-md-4 col-sm-4 col-xs-1 col-8" alt="Not available" style="height: 12em;">
                     </div>
-                    <div class="carousel-item col-3 justfy-content-center col-10">
-                      <img src="{{data.photos[2]}}" class="mx-auto d-block col-lg-6 col-md-8 col-sm-4" alt="Not available" style="height: 12em;">
+                    <div class="carousel-item mx-auto justfy-content-center" *ngIf="data.photos[2]">
+                      <img src="{{data.photos[2]}}" class="mx-auto d-block justfy-content-center mx-auto col-lg-4 col-md-4 col-sm-4 col-xs-1 col-8" alt="Not available" style="height: 12em;">
                     </div>
                   </div>
                   
                 </div>
-                <button class="carousel-control-prev btn-secondary" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
@@ -165,7 +164,8 @@
             <div class="col-md-3 col-4">
               <label>Time</label>
               <select class="form-select" formControlName="hour" [ngClass]="{ 'is-invalid': submitted && f.hour.errors }" #timehour required>
-                <option value="10" selected>10</option>
+                <option value=""></option>
+                <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
                 <option value="13">13</option>
@@ -182,7 +182,8 @@
             <div class="col-md-3 col-4 p-2">
               <label></label>
               <select class="form-select" formControlName="minutes" [ngClass]="{ 'is-invalid': submitted && f.minutes.errors }" #timeminutes required>
-                <option value="00" selected>00</option>
+                <option value=""></option>
+                <option value="00">00</option>
                 <option value="15">15</option>
                 <option value="30">30</option>
                 <option value="45">45</option>

@@ -112,8 +112,13 @@ export class CardComponent implements OnChanges {
   if(this.data.price==undefined || this.data.price==""){
     this.data.price = "N/A"
   }
-  if(this.data.phone == undefined || this.data.phone==""){
-    this.data.phone = "N/A"
+  if(this.data.display_phone == undefined || this.data.display_phone==""){
+    if(this.data.phone==undefined || this.data.phone==""){
+      this.data.phone = "N/A"
+    }else{
+      this.data.display_phone = this.data.phone
+    }
+    
   }
   if(this.data.categories==undefined || this.data.categories==""){
     this.data.categories = "N/A"
