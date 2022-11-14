@@ -10,8 +10,8 @@
 </div>
 
 <div *ngIf="notpresent" id="tableData" #table>
-    <div class="justify-content-center mx-auto text-center col-lg-12 col-md-10 col-sm-4 col-xs-4 col-sm-*">
-  <table mat-table [dataSource]="data"  class="border rounded table table-sm table-striped justify-content-center mx-auto text-center col-lg-10 col-md-10 col-sm-4 col-xs-3 col-sm-*">
+    <div class="justify-content-center mx-auto text-center table-responsive">
+  <table mat-table [dataSource]="data"  class="rounded table table-sm table-striped justify-content-center mx-auto text-center">
   
     <ng-container matColumnDef="No">
       <th mat-header-cell *matHeaderCellDef> # </th>
